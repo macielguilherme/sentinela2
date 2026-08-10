@@ -1,0 +1,2895 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocZ - Sentinela - Configuração de Parâmetros</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        /* ==========================================================================
+           DESIGN SYSTEM SOS DOCS - PADRÃO DOCZ SENTINELA
+           ========================================================================== */
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 0.85rem;
+            color: #333;
+            background: #f4f7f9;
+            padding-top: 45px;
+        }
+
+        /* Top Navigation Bar - IDÊNTICO AO SENTINELA */
+        .topNav {
+            background: #2c363f;
+            color: #eee;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+            height: 34px;
+            border-bottom: 1px solid #1c262b;
+        }
+        .wrapper { position: relative; margin: 0 2%; }
+        .userNav { float: right; font-size: 11px; }
+        .userNav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            border-right: 1px solid #39454f;
+        }
+        .userNav ul li {
+            border-left: 1px solid #39454f;
+            border-right: 1px solid #1c262b;
+            display: flex;
+            align-items: center;
+            height: 34px;
+        }
+        .userNav ul li span,
+        .userNav ul li a {
+            padding: 0 14px;
+            color: #eee;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            font-size: 11px;
+        }
+        .userNav ul li a:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .userNav ul li a i { margin-right: 6px; }
+
+        /* Main Container */
+        .main-container {
+            padding: 15px 2%;
+        }
+
+        /* Card Component - IDÊNTICO AO SENTINELA (SEM BARRAS COLORIDAS) */
+        .card {
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            background: #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            margin-bottom: 1rem;
+        }
+        .card-header {
+            padding: .65rem 1.25rem;
+            background: #f5f6f8;
+            border-bottom: 1px solid #d0d0d0;
+            font-weight: 600;
+            color: #2c363f;
+            font-size: 0.9rem;
+        }
+        .card-body {
+            padding: 1rem 1.25rem;
+        }
+
+        /* Breadcrumb - IDÊNTICO AO SENTINELA */
+        .breadcrumb {
+            background: transparent;
+            padding: 0 0 10px 0;
+            margin: 0;
+            font-size: 0.775rem;
+        }
+        .breadcrumb-item a { color: #0d6efd; text-decoration: none; }
+        .breadcrumb-item a:hover { text-decoration: underline; }
+
+        /* ===== BOTÕES - IDÊNTICOS AO SENTINELA ===== */
+        .btn-sos {
+            border: 1px solid #ccc;
+            background: #f5f5f5;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.825rem;
+            padding: 6px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+        .btn-sos:hover {
+            background: #e8e8e8;
+            border-color: #aaa;
+        }
+        .btn-sos-primary {
+            border-color: #0b5ed7;
+            background: #0d6efd;
+            color: #ffffff;
+        }
+        .btn-sos-primary:hover {
+            background: #0b5ed7;
+            border-color: #0a58ca;
+            color: #ffffff;
+        }
+        .btn-sos-success {
+            border-color: #3a7a5a;
+            background: #e8f5ee;
+            color: #2a5a3a;
+        }
+        .btn-sos-success:hover {
+            background: #d4ece0;
+            border-color: #2a5a3a;
+            color: #2a5a3a;
+        }
+        .btn-sos-sm {
+            padding: 3px 10px;
+            font-size: 0.7rem;
+        }
+        .btn-sos-outline-secondary {
+            border-color: #ced4da;
+            background: #fff;
+            color: #495057;
+        }
+        .btn-sos-outline-secondary:hover {
+            background: #f8f9fa;
+            border-color: #adb5bd;
+        }
+
+        /* ===== BADGES ===== */
+        .badge-sos {
+            display: inline-block;
+            padding: .25rem .6rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+            border-radius: 99px;
+            border: 1px solid transparent;
+        }
+        .badge-sos-light {
+            background: #f0f0f0;
+            border-color: #d0d0d0;
+            color: #555;
+        }
+        .badge-sos-primary {
+            background: #e8f2fc;
+            border-color: #b6d3f2;
+            color: #0d6efd;
+        }
+        .badge-sos-success {
+            background: #def7ec;
+            border-color: #84e1bc;
+            color: #03543f;
+        }
+        .badge-sos-warning {
+            background: #fef3c7;
+            border-color: #fcd34d;
+            color: #92400e;
+        }
+        .badge-sos-danger {
+            background: #fde8e8;
+            border-color: #f8b4b4;
+            color: #9f352b;
+        }
+
+        /* ===== TABELAS - IDÊNTICAS AO SENTINELA ===== */
+        .table-sos {
+            font-size: 0.775rem;
+            margin-bottom: 0;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-sos thead th {
+            background: #f5f6f8;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: #495057;
+            border-bottom: 2px solid #d0d0d0;
+            padding: 0.6rem 0.8rem;
+        }
+        .table-sos td {
+            vertical-align: middle;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.75rem;
+            border-top: 1px solid #e9ecef;
+        }
+        .table-sos tbody tr:hover {
+            background: #f8f9fa;
+        }
+        .table-sos tbody tr.is-disabled td:not(:last-child) {
+            opacity: 0.58;
+        }
+        .table-sos .detail-row {
+            display: none;
+            background: #f7fafc;
+        }
+        .table-sos .detail-row.is-open {
+            display: table-row;
+        }
+        .table-sos .detail-row > td {
+            padding: 0 0.9rem 0.9rem !important;
+            border-top: 0;
+        }
+
+        /* ===== FILTROS E FORMULÁRIOS ===== */
+        .field {
+            height: 34px;
+            width: 100%;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 0 10px;
+            font-size: 0.75rem;
+            color: #2c363f;
+            background: white;
+            transition: all 0.15s ease-in-out;
+        }
+        .field:focus {
+            border-color: #0d6efd;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+        }
+        .field-sm {
+            height: 30px;
+            font-size: 0.7rem;
+            padding: 0 8px;
+        }
+        .field.has-error {
+            border-color: #b91c1c;
+            box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.10);
+        }
+        .field-error {
+            display: none;
+            margin-top: 4px;
+            color: #b91c1c;
+            font-size: 0.68rem;
+        }
+        .field-error.is-visible {
+            display: block;
+        }
+
+        /* ===== SWITCH TOGGLE - ESTILO SENTINELA ===== */
+        .switch-sos {
+            position: relative;
+            display: inline-block;
+            width: 42px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        .switch-sos input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .switch-sos .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ced4da;
+            transition: .3s;
+            border-radius: 24px;
+        }
+        .switch-sos .slider::before {
+            content: "";
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        .switch-sos input:checked + .slider {
+            background-color: #28a745;
+        }
+        .switch-sos input:checked + .slider::before {
+            transform: translateX(18px);
+        }
+        .switch-sos input:focus + .slider {
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+        }
+        .switch-sos input:disabled + .slider {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== PROJECT SCOPE - COMPACTO (SEM BARRAS COLORIDAS) ===== */
+        .project-scope-body {
+            padding: 0;
+        }
+        .project-scope-summary {
+            display: inline-block;
+            padding: .14rem .55rem;
+            border: 1px solid #c7ddd5;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #41685b;
+            font-size: .68rem;
+            font-weight: 600;
+        }
+        .project-scope-row {
+            display: grid;
+            grid-template-columns: 80px minmax(0, 1fr);
+            border-top: 1px solid #e2e7eb;
+        }
+        .project-scope-row:first-child {
+            border-top: 0;
+        }
+        .project-scope-label {
+            display: flex;
+            align-items: center;
+            padding: .45rem .6rem;
+            background: #fbfcfd;
+            color: #495057;
+            font-size: .7rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .project-scope-field {
+            padding: .3rem .5rem;
+        }
+        .project-select {
+            width: 100%;
+            height: 28px;
+            padding: .15rem .4rem;
+            border: 1px solid #c9d2d9;
+            border-radius: 4px;
+            background: #fff;
+            color: #33414a;
+            font-size: .7rem;
+            outline: none;
+        }
+        .project-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
+        }
+        .project-selection-toolbar {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 4px;
+            align-items: center;
+            margin-bottom: .15rem;
+        }
+        .project-tag-box {
+            min-height: 28px;
+            padding: .15rem;
+            border: 1px solid #d8dde2;
+            border-radius: 4px;
+            background: #fff;
+        }
+        .project-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px 4px;
+            align-items: center;
+        }
+        .project-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            min-height: 20px;
+            padding: 0 .4rem;
+            border: 1px solid #b7dd63;
+            border-radius: 3px;
+            background: #dff0a8;
+            color: #6f8d1f;
+            font-size: .6rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .project-tag-remove {
+            border: 0;
+            padding: 0 0 0 2px;
+            background: transparent;
+            color: #88ad2a;
+            font-size: .7rem;
+            font-weight: 700;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .project-tag-remove:hover {
+            color: #628114;
+        }
+        .project-empty-state {
+            color: #7a8790;
+            font-size: .62rem;
+            padding: .05rem .1rem;
+        }
+
+        /* ===== PIPELINE CONFIG - COMPACTO (SEM BARRAS COLORIDAS) ===== */
+        .pipeline-card .card-header { padding: 0; }
+        .pipeline-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .5rem 1rem;
+            border-bottom: 1px solid #e7ebee;
+        }
+        .pipeline-heading .pipeline-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #2c363f;
+        }
+        .pipeline-summary {
+            color: #68757f;
+            font-size: .7rem;
+            font-weight: 500;
+        }
+        .pipeline-tabs {
+            display: flex;
+            padding: 0 1rem;
+            background: #fff;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        .pipeline-tab {
+            border: 0;
+            border-bottom: 3px solid transparent;
+            background: transparent;
+            padding: .5rem .8rem .4rem;
+            color: #65727c;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.78rem;
+            transition: all 0.15s;
+        }
+        .pipeline-tab:hover { color: #2c363f; }
+        .pipeline-tab.active {
+            color: #0d6efd;
+            border-bottom-color: #0d6efd;
+        }
+        .pipeline-tab .badge-sos {
+            margin-left: .25rem;
+            font-weight: 600;
+        }
+        .pipeline-intro {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+            align-items: center;
+            padding: .4rem 1rem;
+            background: #f7fafc;
+            border-bottom: 1px solid #e4eaee;
+            font-size: 0.72rem;
+        }
+        .pipeline-intro strong {
+            display: block;
+            margin-bottom: .05rem;
+            font-size: 0.78rem;
+        }
+        .pipeline-intro .text-muted {
+            font-size: 0.65rem;
+        }
+        .pipeline-status {
+            white-space: nowrap;
+            color: #267a42;
+            font-weight: 600;
+            font-size: .7rem;
+        }
+        .pipeline-status.is-invalid {
+            color: #b06b00;
+        }
+        .pipeline-workspace {
+            display: grid;
+            grid-template-columns: minmax(200px, 28%) 1fr;
+            min-height: 280px;
+        }
+        .stage-catalog {
+            border-right: 1px solid #dfe5e9;
+            background: #fbfcfd;
+            padding: 0.5rem;
+        }
+        .stage-catalog-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: .3rem;
+        }
+        .stage-catalog-title strong { font-size: 0.75rem; }
+        .stage-catalog-title small { font-size: 0.58rem; }
+        .stage-search {
+            position: relative;
+            margin-bottom: .4rem;
+        }
+        .stage-search .field {
+            padding-left: 1.6rem;
+            height: 26px;
+            font-size: .68rem;
+        }
+        .stage-search i {
+            position: absolute;
+            left: .5rem;
+            top: .5rem;
+            color: #8b979f;
+            font-size: 0.7rem;
+        }
+        .stage-list {
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+        .stage-option {
+            display: flex;
+            gap: .3rem;
+            align-items: center;
+            padding: .3rem .4rem;
+            background: #fff;
+            border: 1px solid #dde4e8;
+            border-radius: 3px;
+            transition: border-color .15s ease;
+        }
+        .stage-option:hover {
+            border-color: #b7c7d0;
+        }
+        .stage-option.is-active {
+            border-left: 3px solid #28a745;
+            background: #f9fdf9;
+        }
+        .stage-option-main {
+            display: flex;
+            gap: .3rem;
+            align-items: center;
+            min-width: 0;
+            flex: 1;
+        }
+        .stage-option-copy strong {
+            display: block;
+            font-size: .7rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .stage-option-copy small {
+            display: block;
+            color: #7c8992;
+            font-size: .56rem;
+        }
+        .stage-state {
+            display: inline-flex;
+            align-items: center;
+            gap: .15rem;
+            font-size: .56rem;
+            color: #76848d;
+        }
+        .stage-option.is-active .stage-state { color: #267a42; }
+        .stage-option-actions {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .stage-add-btn, .stage-remove-btn {
+            min-width: 50px;
+            padding: .15rem .3rem;
+            border-radius: 3px;
+            font-size: .58rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #ccd4d8;
+            color: #6b747a;
+            transition: all 0.15s;
+        }
+        .stage-add-btn {
+            color: #1778a8;
+            border-color: #9dc8db;
+        }
+        .stage-add-btn:hover {
+            background: #eaf6fb;
+            border-color: #1778a8;
+            color: #1778a8;
+        }
+        .stage-remove-btn:hover {
+            color: #a33b32;
+            background: #fff5f4;
+            border-color: #d8aaa6;
+        }
+
+        .pipeline-builder {
+            padding: 0.5rem 0.6rem;
+            overflow-x: auto;
+        }
+        .builder-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: .35rem;
+        }
+        .builder-toolbar strong { font-size: 0.75rem; }
+        .builder-help {
+            color: #74818a;
+            font-size: .6rem;
+        }
+        .builder-instructions {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+            padding: .25rem .4rem;
+            background: #eef7fb;
+            border: 1px solid #cde4ef;
+            border-radius: 3px;
+            color: #45616f;
+            font-size: .6rem;
+            margin-bottom: .35rem;
+        }
+        .builder-instructions i { color: #1778a8; }
+        .builder-toolbar-actions {
+            display: flex;
+            gap: .25rem;
+            align-items: center;
+        }
+        .phase-flow {
+            display: flex;
+            align-items: stretch;
+            gap: 0.6rem;
+            min-width: 520px;
+            padding: .1rem .05rem .2rem;
+            flex-wrap: wrap;
+        }
+        .phase {
+            width: 185px;
+            flex: 0 0 185px;
+            border: 1px solid #d8e0e5;
+            border-radius: 4px;
+            background: #fff;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .035);
+            transition: all 0.15s;
+        }
+        .phase[draggable="true"] { cursor: grab; }
+        .phase.is-dragging { opacity: .45; cursor: grabbing; }
+        .phase.is-drop-target { outline: 2px dashed #1778a8; outline-offset: 2px; }
+        .phase:not(:last-child)::after {
+            content: "\2192";
+            position: absolute;
+            right: -0.65rem;
+            top: 47%;
+            color: #8ea0aa;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .phase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .25rem .35rem;
+            background: #edf4f7;
+            border-bottom: 1px solid #d8e0e5;
+            min-height: 30px;
+        }
+        .phase-header strong {
+            font-size: .6rem;
+            text-transform: uppercase;
+            letter-spacing: .02em;
+            color: #43535d;
+        }
+        .phase-header-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: .1rem;
+        }
+        .phase-actions {
+            display: inline-flex;
+            gap: .05rem;
+        }
+        .phase-actions button {
+            width: 18px;
+            height: 18px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            background: transparent;
+            color: #71808a;
+            padding: 0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+        }
+        .phase-actions button:hover:not(:disabled) {
+            background: #fff;
+            border-color: #cad6dc;
+            color: #1778a8;
+        }
+        .phase-actions button:disabled {
+            opacity: .3;
+            cursor: not-allowed;
+        }
+        .phase-body {
+            padding: .25rem;
+            min-height: 70px;
+        }
+        .phase-chip {
+            display: block;
+            padding: .25rem .3rem;
+            border: 1px solid #dce4e8;
+            border-left: 3px solid #2583b2;
+            border-radius: 3px;
+            background: #fff;
+            margin-bottom: .2rem;
+            font-size: .65rem;
+        }
+        .phase-chip-main {
+            display: flex;
+            align-items: center;
+            gap: .25rem;
+            width: 100%;
+        }
+        .phase-chip-copy {
+            min-width: 0;
+            flex: 1;
+        }
+        .phase-chip-copy small {
+            display: block;
+            color: #859199;
+            font-size: .52rem;
+            margin-top: .03rem;
+        }
+        .chip-actions {
+            display: flex;
+            align-items: center;
+            gap: .03rem;
+            margin-left: auto;
+        }
+        .chip-actions button {
+            width: 18px;
+            height: 18px;
+            padding: 0;
+            border: 0;
+            border-radius: 3px;
+            background: transparent;
+            color: #77858d;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+        }
+        .chip-actions button:hover:not(:disabled) {
+            background: #eef3f5;
+            color: #1778a8;
+        }
+        .chip-actions .remove-stage:hover {
+            color: #b13e35;
+            background: #fff0ef;
+        }
+        .chip-actions button:disabled {
+            opacity: .28;
+            cursor: not-allowed;
+        }
+        .phase-marker {
+            display: inline-block;
+            padding: .08rem .25rem;
+            border-radius: 8px;
+            font-size: .5rem;
+            font-weight: 700;
+            background: #e7f5ec;
+            color: #267a42;
+        }
+        .phase-marker.end {
+            background: #eef0f2;
+            color: #59666e;
+        }
+        .parallel-note {
+            margin-top: .15rem;
+            color: #65747d;
+            font-size: .52rem;
+            text-align: center;
+            padding-top: .15rem;
+            border-top: 1px dashed #d8e0e5;
+        }
+        .stage-time-config {
+            margin-top: .2rem;
+            padding-top: .2rem;
+            border-top: 1px dashed #d3dde2;
+        }
+        .stage-time-label {
+            display: flex;
+            align-items: center;
+            gap: .15rem;
+            margin-bottom: .1rem;
+            color: #4b5962;
+            font-size: .55rem;
+            font-weight: 600;
+        }
+        .stage-time-input-line {
+            display: grid;
+            grid-template-columns: 50px minmax(0, 1fr);
+        }
+        .stage-time-value, .stage-time-unit {
+            height: 22px;
+            border: 1px solid #b9c4cd;
+            background: #fff;
+            color: #333;
+            font-size: .58rem;
+            outline: none;
+        }
+        .stage-time-value {
+            width: 100%;
+            padding: .1rem .3rem;
+            border-radius: 3px 0 0 3px;
+        }
+        .stage-time-unit {
+            width: 100%;
+            padding: .1rem .2rem;
+            border-left: 0;
+            border-radius: 0 3px 3px 0;
+            font-size: .55rem;
+        }
+        .stage-time-value:focus, .stage-time-unit:focus {
+            position: relative;
+            z-index: 1;
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, .10);
+        }
+        .stage-time-value.has-error {
+            border-color: #b91c1c;
+            box-shadow: 0 0 0 2px rgba(185, 28, 28, .09);
+        }
+        .stage-time-help {
+            display: block;
+            margin-top: .1rem;
+            color: #7a8790;
+            font-size: .5rem;
+            line-height: 1.2;
+        }
+        .stage-time-error {
+            display: none;
+            margin-top: .1rem;
+            color: #b91c1c;
+            font-size: .5rem;
+        }
+        .stage-time-error.is-visible { display: block; }
+
+        .add-phase {
+            width: 110px;
+            flex: 0 0 110px;
+            min-height: 100px;
+            border: 1px dashed #aebbc3;
+            border-radius: 4px;
+            background: #fbfcfd;
+            color: #60717b;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+            padding: 0.4rem;
+        }
+        .add-phase:hover {
+            background: #eef7fb;
+            border-color: #1778a8;
+            color: #1778a8;
+        }
+        .add-phase i { font-size: 0.9rem; margin-bottom: .15rem; }
+        .add-phase strong { font-size: 0.65rem; }
+        .add-phase small { font-size: 0.5rem; }
+
+        .pipeline-empty {
+            min-height: 150px;
+            border: 1px dashed #c5d0d6;
+            border-radius: 4px;
+            background: #fbfcfd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #71808a;
+            text-align: center;
+            padding: 0.8rem;
+        }
+        .pipeline-empty i { font-size: 1.3rem; color: #a8b5bd; margin-bottom: .3rem; }
+        .pipeline-empty .btn-sos { margin-top: .4rem; }
+
+        .pipeline-panel { display: none; }
+        .pipeline-panel.active { display: block; }
+
+        .unsaved-badge {
+            display: none;
+            color: #a56400;
+            background: #fff3cd;
+            border-radius: 10px;
+            padding: .1rem .35rem;
+            font-size: 0.6rem;
+            font-weight: 600;
+        }
+        .unsaved-badge.show { display: inline-block; }
+
+        /* ===== CLASSIFICATION CARD (SEM BARRAS COLORIDAS) ===== */
+        .classification-summary {
+            display: inline-block;
+            padding: .22rem .55rem;
+            border: 1px solid #c9d6e2;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #5d6d7e;
+            font-size: .72rem;
+            font-weight: 600;
+        }
+        .classification-settings {
+            padding: 0.6rem 1.25rem;
+            background: #f8fbfd;
+            border-bottom: 1px solid #dfe7ed;
+        }
+        .classification-config {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-left: 10px;
+            padding: .5rem .7rem;
+            border: 1px solid #d7e5f0;
+            border-left: 3px solid #4b85bd;
+            border-radius: 4px;
+            background: #f2f8fc;
+        }
+        .classification-config-copy {
+            flex: 1;
+            min-width: 0;
+            padding-top: 2px;
+        }
+        .classification-config-title {
+            display: block;
+            margin-bottom: 2px;
+            color: #3f4d58;
+            font-size: .7rem;
+            font-weight: 600;
+        }
+        .classification-config-help {
+            display: block;
+            color: #73808a;
+            font-size: .62rem;
+        }
+        .classification-minutes-field {
+            flex: 0 0 220px;
+        }
+        .classification-minutes-field label {
+            display: block;
+            margin: 0 0 2px;
+            color: #495057;
+            font-size: .65rem;
+            font-weight: 600;
+        }
+        .required-indicator {
+            color: #b91c1c;
+            font-weight: 700;
+        }
+        .minutes-input-line {
+            display: flex;
+            align-items: stretch;
+        }
+        .classification-minutes {
+            width: 100px;
+            height: 28px;
+            padding: .2rem .4rem;
+            border: 1px solid #b9c4cd;
+            border-right: 0;
+            border-radius: 4px 0 0 4px;
+            color: #333;
+            background: #fff;
+            font-size: .72rem;
+            outline: none;
+        }
+        .classification-minutes:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
+        }
+        .classification-minutes.has-error {
+            border-color: #b91c1c;
+            box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.10);
+        }
+        .minutes-input-unit {
+            display: flex;
+            align-items: center;
+            height: 28px;
+            padding: 0 .5rem;
+            border: 1px solid #b9c4cd;
+            border-radius: 0 4px 4px 0;
+            background: #e9ecef;
+            color: #495057;
+            font-size: .65rem;
+            min-width: 70px;
+        }
+        .minutes-input-unit select {
+            border: none;
+            background: transparent;
+            color: #495057;
+            font-size: .65rem;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            padding: 0;
+            width: 100%;
+        }
+        .classification-rule {
+            color: #606b74;
+            font-size: .7rem;
+        }
+        .uses-time-badge {
+            display: inline-block;
+            margin-left: 4px;
+            padding: 1px 5px;
+            border: 1px solid #9dc9ef;
+            border-radius: 8px;
+            background: #eaf5fe;
+            color: #2474b5;
+            font-size: .55rem;
+            font-weight: 600;
+            white-space: nowrap;
+            vertical-align: 1px;
+        }
+        .uses-stage-time-badge {
+            display: inline-block;
+            margin-left: 4px;
+            padding: 1px 5px;
+            border: 1px solid #9fcfba;
+            border-radius: 8px;
+            background: #edf8f2;
+            color: #267a58;
+            font-size: .55rem;
+            font-weight: 600;
+            white-space: nowrap;
+            vertical-align: 1px;
+        }
+        .required-badge {
+            display: inline-block;
+            margin-left: 4px;
+            padding: 1px 5px;
+            border: 1px solid #e3b8bc;
+            border-radius: 8px;
+            background: #fff4f5;
+            color: #a72834;
+            font-size: .55rem;
+            font-weight: 600;
+            white-space: nowrap;
+            vertical-align: 1px;
+        }
+
+        /* ===== DIALOG ===== */
+        .pipeline-dialog-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(21, 31, 38, .52);
+            z-index: 2200;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .pipeline-dialog-backdrop.is-open { display: flex; }
+        .pipeline-dialog {
+            width: min(480px, 100%);
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .25);
+            overflow: hidden;
+        }
+        .pipeline-dialog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .6rem 1rem;
+            background: #f3f6f8;
+            border-bottom: 1px solid #dce3e7;
+        }
+        .pipeline-dialog-header strong { font-size: .82rem; color: #2c363f; }
+        .dialog-close {
+            border: 0;
+            background: transparent;
+            color: #65737c;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .dialog-close:hover { background: #e2e8f0; color: #000; }
+        .pipeline-dialog-body { padding: 0.7rem; }
+        .dialog-stage-name {
+            padding: .4rem .5rem;
+            background: #eef7fb;
+            border-left: 3px solid #1778a8;
+            margin-bottom: .5rem;
+            font-weight: 600;
+            color: #354b57;
+            font-size: 0.8rem;
+        }
+        .insert-option {
+            display: flex;
+            gap: .4rem;
+            align-items: flex-start;
+            padding: .4rem;
+            border: 1px solid #d8e0e5;
+            border-radius: 4px;
+            margin-bottom: .35rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .insert-option:hover {
+            border-color: #9fc6d8;
+            background: #f8fcfe;
+        }
+        .insert-option input { margin-top: .1rem; flex-shrink: 0; }
+        .insert-option strong { display: block; font-size: .72rem; color: #2c363f; }
+        .insert-option small { color: #76848d; font-size: .6rem; }
+        .dialog-phase-select {
+            margin: .25rem 0 0 1.2rem;
+            width: calc(100% - 1.2rem);
+            height: 28px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 0 8px;
+            font-size: .68rem;
+            color: #2c363f;
+            background: white;
+        }
+        .dialog-phase-select:focus {
+            border-color: #0d6efd;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+        }
+        .pipeline-dialog-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: .35rem;
+            padding: .5rem 1rem;
+            background: #fafbfc;
+            border-top: 1px solid #e0e5e8;
+        }
+
+        /* ===== TOAST ===== */
+        .toast-stack {
+            position: fixed;
+            right: 1.2rem;
+            bottom: 1.2rem;
+            z-index: 2400;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+        .prototype-toast {
+            min-width: 260px;
+            max-width: 380px;
+            display: flex;
+            gap: .5rem;
+            align-items: flex-start;
+            padding: .5rem .65rem;
+            border-radius: 4px;
+            color: #fff;
+            background: #2d3b43;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+            animation: toastIn .18s ease-out;
+            font-size: 0.78rem;
+        }
+        .prototype-toast.success { background: #267a42; }
+        .prototype-toast.warning { background: #9b670a; }
+        @keyframes toastIn {
+            from { transform: translateY(8px); opacity: 0; }
+            to { transform: none; opacity: 1; }
+        }
+
+        /* ===== MODAL POPUP - ESTILO SENTINELA ===== */
+        .modal-backdrop-custom {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1040;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-backdrop-custom.open { display: flex; }
+        .modal-docz {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            width: min(1100px, 98vw);
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #d0d0d0;
+        }
+        .modal-docz-titlebar {
+            background: #f5f6f8;
+            border-bottom: 1px solid #d0d0d0;
+            height: 38px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 12px;
+            flex-shrink: 0;
+        }
+        .modal-docz-title {
+            font-weight: 700;
+            color: #2c363f;
+            font-size: 0.82rem;
+        }
+        .modal-docz-close {
+            color: #6c757d;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .modal-docz-close:hover {
+            color: #000;
+            background: #e2e8f0;
+        }
+        .modal-docz-content {
+            background-color: #fff;
+            padding: 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .modal-docz-content .description-text {
+            font-size: 0.75rem;
+            color: #6c757d;
+            margin: 0;
+        }
+        .modal-docz-search {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 0 8px;
+            transition: all 0.15s ease-in-out;
+        }
+        .modal-docz-search:focus-within {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+        }
+        .modal-docz-search i {
+            color: #8b979f;
+            font-size: 0.75rem;
+        }
+        .modal-docz-search input {
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 28px;
+            font-size: 0.75rem;
+            padding: 0 4px;
+            color: #333;
+            background: transparent;
+        }
+        .modal-docz-search input::placeholder {
+            color: #aaa;
+        }
+        .modal-docz-search .clear-search {
+            color: #999;
+            cursor: pointer;
+            font-size: 12px;
+            display: none;
+            padding: 0 4px;
+        }
+        .modal-docz-search .clear-search:hover {
+            color: #333;
+        }
+        .modal-docz-table-wrap {
+            width: 100%;
+            border: 1px solid #d0d0d0;
+            background: #fff;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .modal-docz-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.7rem;
+        }
+        .modal-docz-table th {
+            background: #f5f6f8;
+            color: #495057;
+            font-weight: 700;
+            padding: 6px 8px;
+            border-bottom: 2px solid #d0d0d0;
+            text-transform: uppercase;
+            font-size: 0.58rem;
+        }
+        .modal-docz-table td {
+            padding: 5px 8px;
+            border-bottom: 1px solid #e9ecef;
+            color: #333;
+            vertical-align: middle;
+        }
+        .modal-docz-table .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            color: #444;
+            cursor: pointer;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        .modal-docz-table .checkbox-item:hover {
+            background: #f0f0f0;
+        }
+        .modal-docz-table .checkbox-item.hidden {
+            display: none;
+        }
+        .modal-docz-table .checkbox-item input[type="checkbox"] {
+            margin: 0;
+            flex-shrink: 0;
+            width: 14px;
+            height: 14px;
+        }
+        .modal-docz-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 8px;
+            margin-top: 4px;
+        }
+        .modal-docz-count {
+            font-size: 0.75rem;
+            color: #6c757d;
+        }
+        .modal-docz-count strong {
+            color: #2c363f;
+        }
+        .modal-docz-actions {
+            display: flex;
+            gap: 5px;
+        }
+        .result-count {
+            font-size: 0.7rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* ===== LAYOUT: PROJETOS E ESTEIRAS EM LINHAS SEPARADAS ===== */
+        .row-projetos {
+            margin-bottom: 1rem;
+        }
+        .row-esteiras {
+            margin-bottom: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .pipeline-workspace {
+                grid-template-columns: 1fr;
+            }
+            .stage-catalog {
+                border-right: 0;
+                border-bottom: 1px solid #dfe5e9;
+            }
+            .phase-flow {
+                flex-wrap: nowrap;
+                min-width: max-content;
+            }
+            .classification-config {
+                flex-direction: column;
+                gap: 8px;
+                margin-left: 0;
+            }
+            .classification-minutes-field {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+            .modal-docz-table .checkbox-item { font-size: 0.68rem; }
+        }
+        @media (max-width: 768px) {
+            .project-scope-row { grid-template-columns: 1fr; }
+            .project-scope-label { padding: .35rem .6rem .1rem; align-items: flex-start; }
+            .project-scope-field { padding-top: 0; }
+            .project-selection-toolbar { grid-template-columns: 1fr; }
+            .classification-table thead th:nth-child(2),
+            .classification-table tbody td:nth-child(2) { display: none; }
+            .pipeline-intro, .builder-toolbar { align-items: flex-start; flex-direction: column; }
+            .stage-option-actions { margin-left: 0; }
+            .stage-option { flex-wrap: wrap; }
+            .stage-option-actions, .stage-add-btn, .stage-remove-btn { width: 100%; }
+            .phase { width: 175px; flex-basis: 175px; }
+            .toast-stack { left: .75rem; right: .75rem; bottom: .75rem; }
+            .prototype-toast { min-width: 0; max-width: none; }
+            .modal-docz { width: 98vw; }
+        }
+        @media (max-width: 620px) {
+            .pipeline-tabs { overflow-x: auto; }
+            .stage-list { grid-template-columns: 1fr; }
+            .phase-flow { min-width: 0; flex-direction: column; align-items: stretch; }
+            .phase { width: 100%; flex-basis: auto; }
+            .phase:not(:last-child)::after { display: none; }
+            .add-phase { width: 100%; flex-basis: auto; min-height: 50px; }
+        }
+
+        /* ===== UTILITÁRIOS ===== */
+        .text-muted { color: #6c757d !important; }
+        .text-primary { color: #0d6efd !important; }
+        .text-center { text-align: center !important; }
+        .small { font-size: 80%; }
+        .mb-0 { margin-bottom: 0 !important; }
+        .mb-1 { margin-bottom: .25rem !important; }
+        .mb-2 { margin-bottom: .5rem !important; }
+        .mb-3 { margin-bottom: 1rem !important; }
+        .mt-2 { margin-top: .5rem !important; }
+        .mr-1 { margin-right: .25rem !important; }
+        .mr-2 { margin-right: .5rem !important; }
+        .ml-2 { margin-left: .5rem !important; }
+        .p-0 { padding: 0 !important; }
+        .d-flex { display: flex !important; }
+        .justify-content-between { justify-content: space-between !important; }
+        .align-items-center { align-items: center !important; }
+        .flex-wrap { flex-wrap: wrap !important; }
+        .gap-2 { gap: 8px; }
+        .clearfix::after { content: ""; clear: both; display: table; }
+        .h-100 { height: 100% !important; }
+
+        /* Ícones simples */
+        .fas {
+            display: inline-block;
+            min-width: .9em;
+            font-style: normal;
+            text-align: center;
+        }
+        .fa-plus::before, .fa-plus-circle::before { content: "+"; font-weight: 700; }
+        .fa-times::before { content: "×"; font-weight: 700; }
+        .fa-chevron-left::before, .fa-angle-left::before { content: "‹"; font-weight: 700; }
+        .fa-chevron-right::before, .fa-angle-right::before { content: "›"; font-weight: 700; }
+        .fa-check-circle::before { content: "✓"; font-weight: 700; }
+        .fa-info-circle::before { content: "i"; font-weight: 700; }
+        .fa-search::before { content: "⌕"; }
+        .fa-save::before { content: "▣"; }
+        .fa-undo::before { content: "↶"; }
+        .fa-grip-vertical::before { content: "⋮"; font-weight: 700; }
+        .fa-code-branch::before { content: "⑂"; }
+        .fa-level-down-alt::before { content: "↳"; }
+        .fa-stream::before { content: "≋"; }
+        .fa-file-alt::before { content: "▤"; }
+        .fa-archive::before { content: "▣"; }
+        .fa-tags::before { content: "◆"; }
+        .fa-project-diagram::before { content: "◇"; }
+        .fa-sliders-h::before { content: "☷"; }
+        .fa-circle::before { content: "○"; }
+        .fa-user::before { content: "👤"; }
+        .fa-reply::before { content: "↩"; }
+        .fa-sign-out-alt::before { content: "⏻"; }
+    </style>
+</head>
+<body>
+
+    <!-- ===== TOPNAV - IDÊNTICO AO SENTINELA ===== -->
+    <div class="topNav">
+        <div class="wrapper">
+            <div class="userNav">
+                <ul>
+                    <li><span><strong>DocZ GED / SIGAD</strong></span></li>
+                    <li><span><strong>Módulo Sentinela</strong></span></li>
+                    <li><a href="#"><span>guilherme.ribeiro@sosdocs.com.br</span></a></li>
+                    <li><a href="#"><span>Voltar</span></a></li>
+                    <li><a href="#"><span>Logout</span></a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main class="main-container">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Sentinela</a></li>
+                <li class="breadcrumb-item active">Configuração de Parâmetros de Exibição</li>
+            </ol>
+        </nav>
+
+        <!-- Ações da tela -->
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+            <div>
+                <h4 class="mb-1">Configuração de Parâmetros de Exibição</h4>
+                <p class="text-muted small mb-0">Gerencie projetos, esteiras monitoradas e situações gerenciais do Sentinela</p>
+            </div>
+            <div>
+                <button class="btn-sos btn-sos-success" id="btnSalvarGeral">
+                    <i class="fas fa-save mr-1"></i> Salvar Configurações
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== LINHA 1: PROJETOS ===== -->
+        <div class="row-projetos">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Projetos</span>
+                    <span class="project-scope-summary" id="projectSelectionSummary">5 selecionados</span>
+                </div>
+                <div class="project-scope-body">
+                    <div class="project-scope-row">
+                        <label class="project-scope-label" for="projectClientSelect">Cliente:</label>
+                        <div class="project-scope-field">
+                            <select class="project-select" id="projectClientSelect">
+                                <option value="anm-nacional" selected="">anm-nacional</option>
+                                <option value="grupo-hospitalar-sul">grupo-hospitalar-sul</option>
+                                <option value="holding-financeira">holding-financeira</option>
+                                <option value="operacoes-brasil">operacoes-brasil</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="project-scope-row">
+                        <label class="project-scope-label" for="projectPickerSelect">Projeto:</label>
+                        <div class="project-scope-field">
+                            <div class="project-selection-toolbar">
+                                <select class="project-select" id="projectPickerSelect">
+                                    <option value="">Adicionar projeto...</option>
+                                    <option value="anm-regional-sp">ANM NACIONAL - REGIONAL SP</option>
+                                    <option value="anm-regional-sc">ANM NACIONAL - REGIONAL SC</option>
+                                    <option value="anm-regional-rs">ANM NACIONAL - REGIONAL RS</option>
+                                    <option value="anm-regional-rj">ANM NACIONAL - REGIONAL RJ</option>
+                                    <option value="anm-regional-mg">ANM NACIONAL - REGIONAL MG</option>
+                                    <option value="anm-regional-ba">ANM NACIONAL - REGIONAL BA</option>
+                                </select>
+                                <button type="button" class="btn-sos btn-sos-sm btn-sos-outline-secondary" id="btnClearProjectsCompact">Limpar</button>
+                            </div>
+                            <div class="project-tag-box" id="projectTagBox">
+                                <div class="project-tag-list" id="projectTagList">
+                                    <span class="project-tag" data-project-value="anm-regional-sp">ANM NACIONAL - REGIONAL SP<button type="button" class="project-tag-remove" aria-label="Remover projeto">×</button></span>
+                                    <span class="project-tag" data-project-value="anm-regional-sc">ANM NACIONAL - REGIONAL SC<button type="button" class="project-tag-remove" aria-label="Remover projeto">×</button></span>
+                                    <span class="project-tag" data-project-value="anm-regional-rs">ANM NACIONAL - REGIONAL RS<button type="button" class="project-tag-remove" aria-label="Remover projeto">×</button></span>
+                                    <span class="project-tag" data-project-value="anm-regional-mg">ANM NACIONAL - REGIONAL MG<button type="button" class="project-tag-remove" aria-label="Remover projeto">×</button></span>
+                                    <span class="project-tag" data-project-value="anm-regional-rj">ANM NACIONAL - REGIONAL RJ<button type="button" class="project-tag-remove" aria-label="Remover projeto">×</button></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== LINHA 2: ESTEIRAS MONITORADAS ===== -->
+        <div class="row-esteiras">
+            <div class="card">
+                <div class="card-header">
+                    <div class="pipeline-heading">
+                        <span class="pipeline-title">Esteiras Monitoradas</span>
+                        <span class="pipeline-summary">
+                            <span class="unsaved-badge" id="pipelineUnsaved">Alterações não salvas</span>
+                            <span class="text-muted">por projeto</span>
+                        </span>
+                    </div>
+                    <div class="pipeline-tabs" role="tablist">
+                        <button class="pipeline-tab" data-pipeline="documentos" role="tab" aria-selected="false">
+                            <i class="fas fa-file-alt mr-1"></i> Documentos <span class="badge-sos badge-sos-light" id="docCount">5</span>
+                        </button>
+                        <button class="pipeline-tab active" data-pipeline="caixas" role="tab" aria-selected="true">
+                            <i class="fas fa-archive mr-1"></i> Caixas <span class="badge-sos badge-sos-light" id="boxCount">4</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pipeline-intro">
+                    <div>
+                        <strong>Fluxo esperado</strong>
+                    </div>
+                    <span class="pipeline-status" id="pipelineValidationStatus"><i class="fas fa-check-circle mr-1"></i> Válida</span>
+                </div>
+
+                <section class="pipeline-panel" id="pipeline-documentos" data-type="documentos" role="tabpanel">
+                    <div class="pipeline-workspace">
+                        <aside class="stage-catalog">
+                            <div class="stage-catalog-title"><strong>Etapas Documentais</strong><small class="text-muted">Domínio</small></div>
+                            <div class="stage-search"><i class="fas fa-search"></i><input class="field stage-filter" type="search" placeholder="Localizar etapa..." aria-label="Localizar etapa..."></div>
+                            <div class="stage-list">
+                                <div class="stage-option is-active" data-stage-name="Recebimento">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Recebimento</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Recebimento"><i class="fas fa-times mr-1"></i>Remover</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-active" data-stage-name="Preparação">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Preparação</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Preparação"><i class="fas fa-times mr-1"></i>Remover</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-active" data-stage-name="Higienização">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Higienização</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Higienização"><i class="fas fa-times mr-1"></i>Remover</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-active" data-stage-name="Digitalização">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Digitalização</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Digitalização"><i class="fas fa-times mr-1"></i>Remover</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-active" data-stage-name="Controle de Qualidade">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Controle de Qualidade</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Controle de Qualidade"><i class="fas fa-times mr-1"></i>Remover</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-off" data-stage-name="Indexação complementar">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Indexação complementar</strong><span class="stage-state"><i class="fas fa-circle"></i>Não monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-add-btn" data-action="add-stage" data-stage="Indexação complementar"><i class="fas fa-plus mr-1"></i>Adicionar</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-off" data-stage-name="Assinatura digital">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Assinatura digital</strong><span class="stage-state"><i class="fas fa-circle"></i>Não monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-add-btn" data-action="add-stage" data-stage="Assinatura digital"><i class="fas fa-plus mr-1"></i>Adicionar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                        <div class="pipeline-builder">
+                            <div class="builder-toolbar">
+                                <div><strong>Organização das fases</strong><div class="builder-help">Arraste ou use as setas para reordenar</div></div>
+                                <div class="builder-toolbar-actions">
+                                    <button type="button" class="btn-sos btn-sos-sm btn-sos-outline-secondary" data-action="reset-pipeline"><i class="fas fa-undo mr-1"></i>Restaurar</button>
+                                </div>
+                            </div>
+                            <div class="builder-instructions"><i class="fas fa-info-circle"></i><span><strong>Obrigatório:</strong> cada etapa monitorada deve ter tempo máximo sem avanço (horas ou dias corridos).</span></div>
+                            <div class="phase-flow">
+                                <article class="phase" draggable="true" data-phase-index="0">
+                                    <header class="phase-header"><strong>Fase 1</strong><span class="phase-header-meta"><span class="phase-marker">INÍCIO</span><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="0" title="Mover fase para a esquerda" disabled=""><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="0" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
+                                    <div class="phase-body">
+                                        <div class="phase-chip">
+                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Recebimento<small>Etapa documental</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="0" data-stage="Recebimento" title="Mover para a fase anterior" disabled=""><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="0" data-stage="Recebimento" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Recebimento" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
+                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="4" data-type="documentos" data-stage="Recebimento"><select class="stage-time-unit" data-type="documentos" data-stage="Recebimento"><option value="hours" selected="">horas</option><option value="days">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="phase" draggable="true" data-phase-index="1">
+                                    <header class="phase-header"><strong>Fase 2</strong><span class="phase-header-meta"><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="1" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="1" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
+                                    <div class="phase-body">
+                                        <div class="phase-chip">
+                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Preparação<small>Etapa documental</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="1" data-stage="Preparação" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="1" data-stage="Preparação" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" data-action="split-stage" data-phase="1" data-stage="Preparação" title="Separar em uma nova fase"><i class="fas fa-level-down-alt"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Preparação" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
+                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="8" data-type="documentos" data-stage="Preparação"><select class="stage-time-unit" data-type="documentos" data-stage="Preparação"><option value="hours" selected="">horas</option><option value="days">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
+                                        </div>
+                                        <div class="phase-chip">
+                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Higienização<small>Etapa documental</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="1" data-stage="Higienização" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="1" data-stage="Higienização" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" data-action="split-stage" data-phase="1" data-stage="Higienização" title="Separar em uma nova fase"><i class="fas fa-level-down-alt"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Higienização" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
+                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="1" data-type="documentos" data-stage="Higienização"><select class="stage-time-unit" data-type="documentos" data-stage="Higienização"><option value="hours">horas</option><option value="days" selected="">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
+                                        </div>
+                                        <div class="parallel-note"><i class="fas fa-code-branch mr-1"></i>Execução paralela</div>
+                                    </div>
+                                </article>
+                                <article class="phase" draggable="true" data-phase-index="2">
+                                    <header class="phase-header"><strong>Fase 3</strong><span class="phase-header-meta"><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="2" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="2" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
+                                    <div class="phase-body">
+                                        <div class="phase-chip">
+                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Digitalização<small>Etapa documental</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="2" data-stage="Digitalização" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="2" data-stage="Digitalização" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Digitalização" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
+                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="2" data-type="documentos" data-stage="Digitalização"><select class="stage-time-unit" data-type="documentos" data-stage="Digitalização"><option value="hours">horas</option><option value="days" selected="">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="phase" draggable="true" data-phase-index="3">
+                                    <header class="phase-header"><strong>Fase 4</strong><span class="phase-header-meta"><span class="phase-marker end">TÉRMINO</span><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="3" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="3" title="Mover fase para a direita" disabled=""><i class="fas fa-chevron-right"></i></button></span></span></header>
+                                    <div class="phase-body">
+                                        <div class="phase-chip">
+                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Controle de Qualidade<small>Etapa documental</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="3" data-stage="Controle de Qualidade" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="3" data-stage="Controle de Qualidade" title="Mover para a próxima fase" disabled=""><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Controle de Qualidade" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
+                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="1" data-type="documentos" data-stage="Controle de Qualidade"><select class="stage-time-unit" data-type="documentos" data-stage="Controle de Qualidade"><option value="hours">horas</option><option value="days" selected="">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <button class="add-phase" type="button" data-action="pick-stage"><i class="fas fa-plus-circle d-block mb-2"></i><strong>Adicionar etapa</strong><small>nova fase ou paralelo</small></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="pipeline-panel active" id="pipeline-caixas" data-type="caixas" role="tabpanel">
+                    <div class="pipeline-workspace">
+                        <aside class="stage-catalog">
+                            <div class="stage-catalog-title"><strong>Status da Gestão Documental</strong><small class="text-muted">Domínio</small></div>
+                            <div class="stage-search"><i class="fas fa-search"></i><input class="field stage-filter" type="search" placeholder="Localizar status..." aria-label="Localizar status..."></div>
+                            <div class="stage-list">
+                                <div class="stage-option is-active" data-stage-name="Recebida">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Recebida</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Recebida"><i class="fas fa-times mr-1"></i>Remover</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-active" data-stage-name="Em preparação">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Em preparação</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Em preparação"><i class="fas fa-times mr-1"></i>Remover</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-active" data-stage-name="Em processamento">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Em processamento</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Em processamento"><i class="fas fa-times mr-1"></i>Remover</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-active" data-stage-name="Concluída">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Concluída</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Concluída"><i class="fas fa-times mr-1"></i>Remover</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-off" data-stage-name="Em auditoria">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Em auditoria</strong><span class="stage-state"><i class="fas fa-circle"></i>Não monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-add-btn" data-action="add-stage" data-stage="Em auditoria"><i class="fas fa-plus mr-1"></i>Adicionar</button>
+                                    </div>
+                                </div>
+                                <div class="stage-option is-off" data-stage-name="Em movimentação">
+                                    <div class="stage-option-main">
+                                        <span class="stage-option-copy"><strong>Em movimentação</strong><span class="stage-state"><i class="fas fa-circle"></i>Não monitorada</span></span>
+                                    </div>
+                                    <div class="stage-option-actions">
+                                        <button type="button" class="stage-add-btn" data-action="add-stage" data-stage="Em movimentação"><i class="fas fa-plus mr-1"></i>Adicionar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                        <div class="pipeline-builder">
+                            <div class="builder-toolbar">
+                                <div><strong>Organização das fases</strong><div class="builder-help">Arraste ou use as setas para reordenar</div></div>
+                                <div class="builder-toolbar-actions"></div>
+                            </div>
+                            <div class="builder-instructions"><i class="fas fa-info-circle"></i><span><strong>Obrigatório:</strong> cada etapa monitorada deve ter tempo máximo sem avanço (horas ou dias corridos).</span></div>
+                            <div class="phase-flow">
+                                <article class="phase" draggable="true" data-phase-index="0">
+                                    <header class="phase-header"><strong>Fase 1</strong><span class="phase-header-meta"><span class="phase-marker">INÍCIO</span><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="0" title="Mover fase para a esquerda" disabled=""><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="0" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
+                                    <div class="phase-body">
+                                        <div class="phase-chip">
+                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Recebida<small>Status da gestão</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="0" data-stage="Recebida" title="Mover para a fase anterior" disabled=""><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="0" data-stage="Recebida" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Recebida" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
+                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="4" data-type="caixas" data-stage="Recebida"><select class="stage-time-unit" data-type="caixas" data-stage="Recebida"><option value="hours" selected="">horas</option><option value="days">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="phase" draggable="true" data-phase-index="1">
+                                    <header class="phase-header"><strong>Fase 2</strong><span class="phase-header-meta"><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="1" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="1" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
+                                    <div class="phase-body">
+                                        <div class="phase-chip">
+                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Em preparação<small>Status da gestão</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="1" data-stage="Em preparação" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="1" data-stage="Em preparação" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Em preparação" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
+                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="8" data-type="caixas" data-stage="Em preparação"><select class="stage-time-unit" data-type="caixas" data-stage="Em preparação"><option value="hours" selected="">horas</option><option value="days">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="phase" draggable="true" data-phase-index="2">
+                                    <header class="phase-header"><strong>Fase 3</strong><span class="phase-header-meta"><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="2" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="2" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
+                                    <div class="phase-body">
+                                        <div class="phase-chip">
+                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Em processamento<small>Status da gestão</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="2" data-stage="Em processamento" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="2" data-stage="Em processamento" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Em processamento" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
+                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="2" data-type="caixas" data-stage="Em processamento"><select class="stage-time-unit" data-type="caixas" data-stage="Em processamento"><option value="hours">horas</option><option value="days" selected="">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="phase" draggable="true" data-phase-index="3">
+                                    <header class="phase-header"><strong>Fase 4</strong><span class="phase-header-meta"><span class="phase-marker end">TÉRMINO</span><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="3" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="3" title="Mover fase para a direita" disabled=""><i class="fas fa-chevron-right"></i></button></span></span></header>
+                                    <div class="phase-body">
+                                        <div class="phase-chip">
+                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Concluída<small>Status da gestão</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="3" data-stage="Concluída" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="3" data-stage="Concluída" title="Mover para a próxima fase" disabled=""><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Concluída" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
+                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="1" data-type="caixas" data-stage="Concluída"><select class="stage-time-unit" data-type="caixas" data-stage="Concluída"><option value="hours">horas</option><option value="days" selected="">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <button class="add-phase" type="button" data-action="pick-stage"><i class="fas fa-plus-circle d-block mb-2"></i><strong>Adicionar etapa</strong><small>nova fase ou paralelo</small></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ===== SITUAÇÕES GERENCIAIS ===== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>Configuração de Situações Gerenciais</span>
+                        <span class="classification-summary" id="classificationSummary">6 de 6 habilitadas</span>
+                    </div>
+
+                    <div class="card-body p-0">
+                        <table class="table-sos table-hover classification-table">
+                            <thead>
+                                <tr>
+                                    <th>Classificação</th>
+                                    <th>Regra aplicada pelo Sentinela</th>
+                                    <th class="text-center" width="100">Habilitar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="classification-main-row">
+                                    <td><strong>Com movimentação no período</strong></td>
+                                    <td><span class="classification-rule">O objeto teve ao menos uma alteração de etapa ou status no período consultado.</span></td>
+                                    <td class="text-center">
+                                        <label class="switch-sos">
+                                            <input type="checkbox" class="classification-toggle" id="classComMovimentacao" data-classification-name="Com movimentação no período">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+
+                                <tr class="classification-main-row">
+                                    <td>
+                                        <strong>Sem movimentação no período</strong>
+                                        <span class="uses-time-badge">USA TEMPO</span>
+                                    </td>
+                                    <td><span class="classification-rule">O objeto não teve alteração de etapa ou status no período consultado.</span></td>
+                                    <td class="text-center">
+                                        <label class="switch-sos">
+                                            <input type="checkbox" class="classification-toggle" id="classSemMovimentacao" data-classification-name="Sem movimentação no período" aria-expanded="true" aria-controls="configSemMovimentacao">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr class="detail-row is-open" id="configSemMovimentacao" data-for="classSemMovimentacao">
+                                    <td colspan="3">
+                                        <div class="classification-config">
+                                            <div class="classification-config-copy">
+                                                <span class="classification-config-title">Configuração para a Situação <span class="required-badge">OBRIGATÓRIA</span></span>
+                                                <span class="classification-config-help">Informe o tempo de referência para aplicar "Sem movimentação no período".</span>
+                                            </div>
+                                            <div class="classification-minutes-field">
+                                                <label for="minutesSemMovimentacao">Defina o tempo para a situação <span class="required-indicator">*</span></label>
+                                                <div class="minutes-input-line">
+                                                    <input type="number" class="classification-minutes" id="minutesSemMovimentacao" min="1" step="1" placeholder="Informe o tempo" required="">
+                                                    <span class="minutes-input-unit">
+                                                        <select id="unitSemMovimentacao">
+                                                            <option value="minutos" selected>minutos</option>
+                                                            <option value="horas">horas</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <span class="field-error">Informe um número inteiro maior que zero.</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="classification-main-row">
+                                    <td>
+                                        <strong>Tempo excedido na posição</strong>
+                                        <span class="uses-stage-time-badge">USA TEMPO DEFINIDO NA ETAPA</span>
+                                    </td>
+                                    <td><span class="classification-rule">O objeto permanece continuamente na etapa atual por tempo igual ou superior ao limite definido para essa etapa.</span></td>
+                                    <td class="text-center">
+                                        <label class="switch-sos">
+                                            <input type="checkbox" class="classification-toggle" id="classTempoExcedido" data-classification-name="Tempo excedido na posição">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+
+                                <tr class="classification-main-row">
+                                    <td>
+                                        <strong>Possível gargalo</strong>
+                                        <span class="uses-stage-time-badge">USA TEMPO DEFINIDO NA ETAPA</span>
+                                    </td>
+                                    <td><span class="classification-rule">O objeto atingiu o limite da etapa atual e não possui impedimento comprovado registrado.</span></td>
+                                    <td class="text-center">
+                                        <label class="switch-sos">
+                                            <input type="checkbox" class="classification-toggle" id="classPossivelGargalo" data-classification-name="Possível gargalo" checked="">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+
+                                <tr class="classification-main-row">
+                                    <td><strong>Impedimento comprovado</strong></td>
+                                    <td><span class="classification-rule">Existe ocorrência impeditiva registrada para o objeto.</span></td>
+                                    <td class="text-center">
+                                        <label class="switch-sos">
+                                            <input type="checkbox" class="classification-toggle" id="classImpedimento" data-classification-name="Impedimento comprovado">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+
+                                <tr class="classification-main-row">
+                                    <td><strong>Fluxo concluído</strong></td>
+                                    <td><span class="classification-rule">O objeto alcançou uma etapa ou status definido como posição final do fluxo.</span></td>
+                                    <td class="text-center">
+                                        <label class="switch-sos">
+                                            <input type="checkbox" class="classification-toggle" id="classFluxoConcluido" data-classification-name="Fluxo concluído">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===== MODAL POPUP - ESTILO SENTINELA ===== -->
+    <div class="modal-backdrop-custom" id="popupModal" onclick="fecharPopupBackdrop(event)">
+        <div class="modal-docz" onclick="event.stopPropagation()">
+            <div class="modal-docz-titlebar">
+                <span class="modal-docz-title">Todos os Parâmetros Configurados - Sentinela (150)</span>
+                <button class="modal-docz-close" onclick="fecharPopup()">✖</button>
+            </div>
+            <div class="modal-docz-content">
+                <p class="description-text">Marque ou desmarque abaixo quais parâmetros devem ser consolidados e exibidos no painel do Módulo Sentinela.</p>
+
+                <div class="modal-docz-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchParam" placeholder="Pesquisar parâmetro..." onkeyup="filtrarParametros()">
+                    <span class="clear-search" id="clearSearch" onclick="limparPesquisa()" style="display: none;">✖</span>
+                </div>
+                <div class="result-count" id="resultCount">Mostrando 148 de 148 parâmetros</div>
+
+                <div class="modal-docz-table-wrap">
+                    <table class="modal-docz-table">
+                        <thead>
+                            <tr>
+                                <th>Parâmetro</th>
+                                <th style="width:70px;text-align:center;">Exibir</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paramTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div class="modal-docz-footer">
+                    <span class="modal-docz-count"><strong id="modalParamCount">148</strong> parâmetros encontrados</span>
+                    <div class="modal-docz-actions">
+                        <button class="btn-sos btn-sos-sm btn-sos-outline-secondary" onclick="fecharPopup()">Cancelar</button>
+                        <button class="btn-sos btn-sos-sm btn-sos-success" onclick="confirmarSelecao()">Confirmar Seleção</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+    <!-- ===== DIALOG ESTEIRA ===== -->
+    <div class="pipeline-dialog-backdrop" id="pipelineDialogBackdrop" role="dialog" aria-modal="true" aria-labelledby="pipelineDialogTitle">
+        <div class="pipeline-dialog">
+            <div class="pipeline-dialog-header">
+                <strong id="pipelineDialogTitle">Adicionar etapa à esteira</strong>
+                <button type="button" class="dialog-close" id="pipelineDialogClose" aria-label="Fechar"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="pipeline-dialog-body">
+                <div class="dialog-stage-name" id="dialogStageName"><label for="dialogStagePicker" class="small mb-1">Etapa disponível</label><select class="field field-sm" id="dialogStagePicker"><option value="Em movimentação">Em movimentação</option></select></div>
+                <p class="small text-muted">Escolha como esta etapa deve entrar no fluxo monitorado:</p>
+                <label class="insert-option">
+                    <input type="radio" name="insertMode" value="new" checked="">
+                    <span><strong>Criar uma nova fase sequencial</strong><small>A etapa será incluída no final da esteira e poderá ser reordenada depois.</small></span>
+                </label>
+                <label class="insert-option">
+                    <input type="radio" name="insertMode" value="parallel">
+                    <span style="width:100%">
+                        <strong>Adicionar em paralelo a uma fase existente</strong>
+                        <small>A etapa ficará no mesmo grupo, sem precedência em relação às demais.</small>
+                        <select class="dialog-phase-select" id="dialogPhaseSelect" disabled=""><option value="0">Fase 1 — Recebida</option><option value="1">Fase 2 — Em preparação</option><option value="2">Fase 3 — Em processamento</option><option value="3">Fase 4 — Concluída</option><option value="4">Fase 5 — Em auditoria</option></select>
+                    </span>
+                </label>
+            </div>
+            <div class="pipeline-dialog-footer">
+                <button type="button" class="btn-sos btn-sos-sm btn-sos-outline-secondary" id="pipelineDialogCancel">Cancelar</button>
+                <button type="button" class="btn-sos btn-sos-sm btn-sos-success" id="pipelineDialogConfirm"><i class="fas fa-plus mr-1"></i> Adicionar à esteira</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ================================================================
+        // JAVASCRIPT - MANTIDO E ADAPTADO PARA O NOVO DESIGN
+        // ================================================================
+
+        // ===== DADOS DOS PARÂMETROS PARA O MODAL =====
+        const parametrosLista = [
+            'Nome do Projeto', 'Código Guarda', 'Descrição',
+            'ID Alternativo', 'Nome Alternativo', 'Código Guarda Alternativo',
+            'Limite de Solicitação Diária', 'Limite de Objetos para Indexação por Lotes', 'Fuso Horário Padrão (UTC)',
+            'Armazém', 'Ativo', 'Principal',
+            'Permitir Adicionar Arquivo(s)', 'Permitir Imprimir Etiquetas', 'Compartilhar Arquivos pela Pesquisa',
+            'Compartilhar Arquivos pela Solicitação', 'Substituir Arquivo de Fotolabel', 'Campos da Descrição da Solicitação - Documentos',
+            'Campos da Descrição da Solicitação - Caixas', 'Formato de Assinatura de O.S', 'Prazo Padrão para Devolução de Objeto',
+            'Dia do Mês para Envio de Notificação de Empréstimo Vencido', 'Tempo de Inatividade para Bloqueio do Usuário',
+            'Pode Solicitar Caixa', 'Pode Solicitar Documento', 'Pode Solicitar Caixa Através do Documento',
+            'Enviar Notificação de O.S', 'Obrigatoriedade de Destinatário na Abertura da O.S', 'Finalizar O.S Digital com 2 Fatores',
+            'Mostrar Dados do Responsável pelo Transporte na O.S', 'Disponibilizar Registro Fotográfico no Atendimento da O.S',
+            'Inserir Vinculados na Solicitação', 'Controlar o Vencimento de Empréstimo do Objeto', 'Permitir Alteração do Prazo pelo Solicitante',
+            'E-mail Cliente para Comunicações/Notificações', 'E-mail Cliente para Notificações de Lotes', 'E-mail Gestão Documental',
+            'E-mail Digitalização', 'E-mail para Notificação de Novos Arquivos', 'E-mail (Normal)',
+            'E-mail (Urgente)', 'Tempo de Aviso Prévio (Normal) - Horas', 'Tempo de Aviso Prévio (Urgência) - Horas',
+            'Ver Integrações', 'Compartilhar Pacotes de Preservação', 'Notificar Vencimento de SLA (Prioridade Normal)',
+            'Notificar Vencimento de SLA (Prioridade Urgente)', 'Definir o Intervalo de Alerta (em Dias)', 'Destinatários do Alerta de Prazo',
+            'Periodicidade do Envio de E-mail de Expurgo (em Dias)', 'Período a ser Considerado no Relatório de Expurgo Enviado',
+            'E-mail para Notificação de Relatório de Expurgo', 'Notificar Prazo de Guarda a Vencer', 'Notificar Expurgo por E-mail',
+            'Enviar Relatório de Expurgo Anualmente Automaticamente', 'Eliminar Dados após Conclusão da O.S. de Expurgo',
+            'Etapa Documental Entrada (para PDF/A)', 'Etapa Documental Saída (para PDF/A)',
+            'Etapa Documental após Conclusão de OS de Recolhimento', 'Armazenar Documentos Digitais no Docz File Service',
+            'Permitir Digitalizar', 'Realizar Chancela em Documentos Digitalizados', 'Realizar Chancela em Documentos Digitalizados em Lote',
+            'Adicionar Marca D\'Água em Chancela de Documentos Digitalizados', 'Realizar Assinatura com Certificado de Usuário',
+            'Realizar Assinatura com Certificado de Usuário em Lote', 'Permitir Upload de um Arquivo por Documento via API',
+            'Substituir Arquivo Existente via API', 'Converter documentos para PDF/A',
+            'Alterar Etapa Documental após Conclusão de OS de Recolhimento', 'Etapa Documental (Alteração pelo Autor)',
+            'Etapa Documental (Inativar)', 'Habilitar Envio para o SEI', 'Visualizar Versões',
+            'Permitir Liberar Objetos para Avaliação sem Informar Tipologia de Arquivos', 'Permitir Arquivar/Desarquivar Documentos',
+            'Permitir Relacionamentos', 'Restringir Acesso aos Documentos por Departamento do Usuário',
+            'Alteração de Objetos Somente pelo Autor', 'Exigir Justificativa ao Alterar um Objeto', 'Inativar Arquivos',
+            'Autor', 'Local da Digitalização', 'Responsável da Digitalização',
+            'Local de Produção', 'Habilitar Valores Padrão para Metadados de Arquivo', 'Identificador SOS',
+            'Localização', 'Status', 'Serviço',
+            'Identificador Cliente', 'Departamento', 'Tipo de Objeto',
+            'Lacre 01', 'Lacre 02', 'Nº Última Solicitação',
+            'Usuário', 'Nº Concorrente', 'Classificação',
+            'Páginas', 'IdNuxeo', 'Volume',
+            'Fase intermediária', 'Destinação final', 'Fase Corrente',
+            'Observações', 'Data de Início', 'Etapa Indexação',
+            'Data Catalogação Complementar', 'Número RG', 'Nome do paciente',
+            'Nº Prontuário', 'Destino', 'Número do Dossiê',
+            'Matrícula', 'Departamento de Lotação', 'Unidade',
+            'Origem', 'Anexo', 'Nº Registro',
+            'Responsável', 'Contratante', 'Data de Produção',
+            'Data de Destinação', 'Implantação', 'Justificativa de Alteração',
+            'Nome do Colaborador', 'Tipo Documental', 'Data de Nascimento',
+            'Nome da mãe', 'Nome do pai', 'CPF',
+            'Data do óbito', 'Sigilo Associado', 'Status Gestão Documental',
+            'Nome do Assinante', 'Classe', 'Subclasse',
+            'Grupo', 'Subgrupo', 'Data do Evento',
+            'Prazo Adicional de Guarda', 'Justificativa da Alteração', 'Ano Inicial',
+            'Colaborador', 'Centro de Custos', 'CPF (2º)',
+            'Avaliação'
+        ];
+
+        // ===== INICIALIZAÇÃO =====
+        document.addEventListener('DOMContentLoaded', function() {
+            iniciarSeletorProjetos();
+            iniciarClassificacoes();
+            iniciarPrototipoEsteiras();
+            renderizarParametrosModal();
+
+            // Botão Salvar Geral
+            document.getElementById('btnSalvarGeral').addEventListener('click', function() {
+                if (!validarTemposEtapas()) return;
+                if (!validarMinutosClassificacoes()) return;
+
+                var habilitadas = document.querySelectorAll('.classification-toggle:checked').length;
+                var total = document.querySelectorAll('.classification-toggle').length;
+
+                mostrarToast('Configurações salvas com sucesso. ' + habilitadas + ' de ' + total + ' classificações habilitadas.', 'success');
+                document.getElementById('pipelineUnsaved').classList.remove('show');
+                pipelineSavedState = JSON.parse(JSON.stringify(pipelineState));
+                stageTimeSavedState = JSON.parse(JSON.stringify(stageTimeLimits));
+            });
+        });
+
+        // ===== SELETOR DE PROJETOS =====
+        function iniciarSeletorProjetos() {
+            document.getElementById('projectPickerSelect').addEventListener('change', function() {
+                adicionarProjetoSelecionado(this.value, this.options[this.selectedIndex] ? this.options[this.selectedIndex].text : '');
+                this.value = '';
+            });
+
+            document.getElementById('btnClearProjectsCompact').addEventListener('click', function() {
+                document.getElementById('projectTagList').innerHTML = '';
+                atualizarResumoSelecaoProjetos();
+            });
+
+            document.getElementById('projectTagList').addEventListener('click', function(event) {
+                if (!event.target.classList.contains('project-tag-remove')) return;
+                var tag = event.target.closest('.project-tag');
+                if (tag) tag.remove();
+                atualizarResumoSelecaoProjetos();
+            });
+
+            atualizarResumoSelecaoProjetos();
+        }
+
+        function adicionarProjetoSelecionado(value, label) {
+            if (!value) return;
+            var tagList = document.getElementById('projectTagList');
+            if (tagList.querySelector('[data-project-value="' + value + '"]')) {
+                mostrarToast('Esse projeto já está incluído na seleção.', 'warning');
+                return;
+            }
+            var tag = document.createElement('span');
+            tag.className = 'project-tag';
+            tag.setAttribute('data-project-value', value);
+            tag.innerHTML = escaparHtml(label) + '<button type="button" class="project-tag-remove" aria-label="Remover projeto">×</button>';
+            tagList.appendChild(tag);
+            atualizarResumoSelecaoProjetos();
+        }
+
+        function atualizarResumoSelecaoProjetos() {
+            var summary = document.getElementById('projectSelectionSummary');
+            var selecionados = document.querySelectorAll('#projectTagList .project-tag').length;
+            if (selecionados === 0) {
+                summary.textContent = 'Nenhum selecionado';
+                document.getElementById('projectTagList').innerHTML = '<span class="project-empty-state">Nenhum projeto selecionado.</span>';
+                return;
+            }
+            var emptyState = document.querySelector('#projectTagList .project-empty-state');
+            if (emptyState) emptyState.remove();
+            summary.textContent = selecionados + (selecionados === 1 ? ' selecionado' : ' selecionados');
+        }
+
+        // ===== CLASSIFICAÇÕES =====
+        function iniciarClassificacoes() {
+            document.querySelectorAll('.classification-toggle').forEach(function(toggle) {
+                toggle.addEventListener('change', function() {
+                    atualizarClassificacoes();
+                    if (this.checked) {
+                        var detalhe = document.querySelector('.detail-row[data-for="' + this.id + '"]');
+                        var campo = detalhe ? detalhe.querySelector('.classification-minutes') : null;
+                        if (campo) campo.focus();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.classification-minutes').forEach(function(campo) {
+                campo.addEventListener('input', function() {
+                    limparErroCampo(this);
+                });
+            });
+
+            atualizarClassificacoes();
+        }
+
+        function atualizarClassificacoes() {
+            var toggles = Array.prototype.slice.call(document.querySelectorAll('.classification-toggle'));
+            var habilitadas = toggles.filter(function(t) { return t.checked; }).length;
+            document.getElementById('classificationSummary').textContent =
+                habilitadas + ' de ' + toggles.length + (habilitadas === 1 ? ' habilitada' : ' habilitadas');
+
+            toggles.forEach(function(toggle) {
+                var linha = toggle.closest('tr');
+                var detalhe = document.querySelector('.detail-row[data-for="' + toggle.id + '"]');
+                var campo = detalhe ? detalhe.querySelector('.classification-minutes') : null;
+
+                if (linha) linha.classList.toggle('is-disabled', !toggle.checked);
+                if (detalhe) {
+                    detalhe.classList.toggle('is-open', toggle.checked);
+                    toggle.setAttribute('aria-expanded', toggle.checked ? 'true' : 'false');
+                }
+                if (campo) {
+                    campo.disabled = !toggle.checked;
+                    campo.required = toggle.checked;
+                    if (!toggle.checked) limparErroCampo(campo);
+                }
+            });
+        }
+
+        function limparErroCampo(campo) {
+            var grupo = campo.closest('.classification-minutes-field');
+            var mensagem = grupo ? grupo.querySelector('.field-error') : null;
+            campo.classList.remove('has-error');
+            campo.removeAttribute('aria-invalid');
+            if (mensagem) mensagem.classList.remove('is-visible');
+        }
+
+        function validarMinutosClassificacoes() {
+            var habilitadas = Array.prototype.slice.call(document.querySelectorAll('.classification-toggle:checked'));
+            var primeiroCampoInvalido = null;
+            var primeiraClassificacaoInvalida = '';
+
+            habilitadas.forEach(function(toggle) {
+                var detalhe = document.querySelector('.detail-row[data-for="' + toggle.id + '"]');
+                var campo = detalhe ? detalhe.querySelector('.classification-minutes') : null;
+                if (!campo) return;
+
+                var valorInformado = campo.value.trim();
+                var minutos = Number(valorInformado);
+                var valido = valorInformado !== '' && Number.isInteger(minutos) && minutos > 0;
+                var grupo = campo.closest('.classification-minutes-field');
+                var mensagem = grupo ? grupo.querySelector('.field-error') : null;
+
+                campo.classList.toggle('has-error', !valido);
+                if (!valido) {
+                    campo.setAttribute('aria-invalid', 'true');
+                    if (mensagem) mensagem.classList.add('is-visible');
+                    if (!primeiroCampoInvalido) {
+                        primeiroCampoInvalido = campo;
+                        primeiraClassificacaoInvalida = toggle.getAttribute('data-classification-name') || '';
+                    }
+                } else {
+                    limparErroCampo(campo);
+                }
+            });
+
+            if (primeiroCampoInvalido) {
+                alert('Informe o tempo obrigatório, em minutos, para a classificação "' + primeiraClassificacaoInvalida + '".');
+                primeiroCampoInvalido.focus();
+                return false;
+            }
+            return true;
+        }
+
+        // ===== ESTEIRAS =====
+        var pipelineDefinitions = {
+            documentos: {
+                title: 'Etapas Documentais',
+                itemType: 'Etapa documental',
+                searchPlaceholder: 'Localizar etapa...',
+                stages: [
+                    'Recebimento', 'Preparação', 'Higienização', 'Digitalização',
+                    'Controle de Qualidade', 'Indexação complementar', 'Assinatura digital'
+                ],
+                initialPhases: [
+                    ['Recebimento'],
+                    ['Preparação', 'Higienização'],
+                    ['Digitalização'],
+                    ['Controle de Qualidade']
+                ]
+            },
+            caixas: {
+                title: 'Status da Gestão Documental',
+                itemType: 'Status da gestão',
+                searchPlaceholder: 'Localizar status...',
+                stages: [
+                    'Recebida', 'Em preparação', 'Em processamento',
+                    'Concluída', 'Em auditoria', 'Em movimentação'
+                ],
+                initialPhases: [
+                    ['Recebida'],
+                    ['Em preparação'],
+                    ['Em processamento'],
+                    ['Concluída']
+                ]
+            }
+        };
+
+        var pipelineState = {
+            documentos: JSON.parse(JSON.stringify(pipelineDefinitions.documentos.initialPhases)),
+            caixas: JSON.parse(JSON.stringify(pipelineDefinitions.caixas.initialPhases))
+        };
+        var stageTimeLimits = {
+            documentos: {
+                'Recebimento': { value: '4', unit: 'hours' },
+                'Preparação': { value: '8', unit: 'hours' },
+                'Higienização': { value: '1', unit: 'days' },
+                'Digitalização': { value: '2', unit: 'days' },
+                'Controle de Qualidade': { value: '1', unit: 'days' }
+            },
+            caixas: {
+                'Recebida': { value: '4', unit: 'hours' },
+                'Em preparação': { value: '8', unit: 'hours' },
+                'Em processamento': { value: '2', unit: 'days' },
+                'Concluída': { value: '1', unit: 'days' }
+            }
+        };
+        var pipelineSavedState = JSON.parse(JSON.stringify(pipelineState));
+        var stageTimeSavedState = JSON.parse(JSON.stringify(stageTimeLimits));
+        var pendingPipelineInsert = null;
+        var draggedPhase = null;
+
+        function iniciarPrototipoEsteiras() {
+            renderizarEsteira('documentos');
+            renderizarEsteira('caixas');
+            atualizarContadoresEsteira();
+            atualizarStatusEsteira('documentos');
+
+            document.getElementById('pipelineDialogClose').addEventListener('click', fecharDialogEsteira);
+            document.getElementById('pipelineDialogCancel').addEventListener('click', fecharDialogEsteira);
+            document.getElementById('pipelineDialogConfirm').addEventListener('click', confirmarInsercaoEsteira);
+            document.getElementById('pipelineDialogBackdrop').addEventListener('click', function(event) {
+                if (event.target === this) fecharDialogEsteira();
+            });
+
+            document.querySelectorAll('input[name="insertMode"]').forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    document.getElementById('dialogPhaseSelect').disabled = this.value !== 'parallel';
+                });
+            });
+
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') fecharDialogEsteira();
+            });
+
+            document.querySelectorAll('.pipeline-tab').forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.pipeline-tab').forEach(function(item) {
+                        var active = item === tab;
+                        item.classList.toggle('active', active);
+                        item.setAttribute('aria-selected', active ? 'true' : 'false');
+                    });
+                    document.querySelectorAll('.pipeline-panel').forEach(function(panel) {
+                        panel.classList.toggle('active', panel.id === 'pipeline-' + tab.getAttribute('data-pipeline'));
+                    });
+                    atualizarStatusEsteira(tab.getAttribute('data-pipeline'));
+                });
+            });
+
+            window.addEventListener('beforeunload', function(event) {
+                if (document.getElementById('pipelineUnsaved').classList.contains('show')) {
+                    event.preventDefault();
+                    event.returnValue = '';
+                }
+            });
+        }
+
+        function contarEtapas(type) {
+            return pipelineState[type].reduce(function(total, phase) {
+                return total + phase.length;
+            }, 0);
+        }
+
+        function etapaEstaNaEsteira(type, stageName) {
+            return pipelineState[type].some(function(phase) {
+                return phase.indexOf(stageName) !== -1;
+            });
+        }
+
+        function obterLimiteEtapa(type, stageName) {
+            if (!stageTimeLimits[type][stageName]) {
+                stageTimeLimits[type][stageName] = { value: '', unit: 'hours' };
+            }
+            return stageTimeLimits[type][stageName];
+        }
+
+        function renderizarEsteira(type) {
+            var definition = pipelineDefinitions[type];
+            var phases = pipelineState[type];
+            var panel = document.getElementById('pipeline-' + type);
+
+            var catalogHtml = definition.stages.map(function(stage) {
+                var active = etapaEstaNaEsteira(type, stage);
+                return '<div class="stage-option ' + (active ? 'is-active' : 'is-off') + '" data-stage-name="' + escaparHtml(stage) + '">' +
+                    '<div class="stage-option-main">' +
+                    '<span class="stage-option-copy">' +
+                    '<strong>' + escaparHtml(stage) + '</strong>' +
+                    '<span class="stage-state"><i class="fas ' + (active ? 'fa-check-circle' : 'fa-circle') + '"></i>' +
+                    (active ? 'Monitorada' : 'Não monitorada') + '</span>' +
+                    '</span>' +
+                    '</div>' +
+                    '<div class="stage-option-actions">' +
+                    (active ?
+                        '<button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="' + escaparHtml(stage) + '"><i class="fas fa-times mr-1"></i>Remover</button>' :
+                        '<button type="button" class="stage-add-btn" data-action="add-stage" data-stage="' + escaparHtml(stage) + '"><i class="fas fa-plus mr-1"></i>Adicionar</button>') +
+                    '</div>' +
+                    '</div>';
+            }).join('');
+
+            var flowHtml = '';
+            if (phases.length === 0) {
+                flowHtml = '<div class="pipeline-empty">' +
+                    '<i class="fas fa-stream"></i>' +
+                    '<strong>Nenhuma etapa monitorada</strong>' +
+                    '<span class="small">Use o botão "Adicionar" ao lado de uma etapa para iniciar esta esteira.</span>' +
+                    '<button type="button" class="btn-sos btn-sos-sm btn-sos-outline-secondary" data-action="pick-stage"><i class="fas fa-plus mr-1"></i>Selecionar uma etapa</button>' +
+                    '</div>';
+            } else {
+                flowHtml = '<div class="phase-flow">' + phases.map(function(phase, phaseIndex) {
+                    var marker = phaseIndex === 0 ?
+                        '<span class="phase-marker">INÍCIO</span>' :
+                        (phaseIndex === phases.length - 1 ? '<span class="phase-marker end">TÉRMINO</span>' : '');
+                    var phaseActions = '<span class="phase-actions">' +
+                        '<button type="button" data-action="move-phase-left" data-phase="' + phaseIndex + '" title="Mover fase para a esquerda" ' + (phaseIndex === 0 ? 'disabled' : '') + '><i class="fas fa-chevron-left"></i></button>' +
+                        '<button type="button" data-action="move-phase-right" data-phase="' + phaseIndex + '" title="Mover fase para a direita" ' + (phaseIndex === phases.length - 1 ? 'disabled' : '') + '><i class="fas fa-chevron-right"></i></button>' +
+                        '</span>';
+                    var chips = phase.map(function(stage) {
+                        var timeLimit = obterLimiteEtapa(type, stage);
+                        var inputValue = escaparHtml(timeLimit.value || '');
+                        var hoursSelected = timeLimit.unit === 'days' ? '' : ' selected';
+                        var daysSelected = timeLimit.unit === 'days' ? ' selected' : '';
+                        return '<div class="phase-chip">' +
+                            '<div class="phase-chip-main">' +
+                            '<i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i>' +
+                            '<span class="phase-chip-copy">' + escaparHtml(stage) + '<small>' + definition.itemType + '</small></span>' +
+                            '<span class="chip-actions">' +
+                            '<button type="button" data-action="move-stage-left" data-phase="' + phaseIndex + '" data-stage="' + escaparHtml(stage) + '" title="Mover para a fase anterior" ' + (phaseIndex === 0 ? 'disabled' : '') + '><i class="fas fa-angle-left"></i></button>' +
+                            '<button type="button" data-action="move-stage-right" data-phase="' + phaseIndex + '" data-stage="' + escaparHtml(stage) + '" title="Mover para a próxima fase" ' + (phaseIndex === phases.length - 1 ? 'disabled' : '') + '><i class="fas fa-angle-right"></i></button>' +
+                            (phase.length > 1 ? '<button type="button" data-action="split-stage" data-phase="' + phaseIndex + '" data-stage="' + escaparHtml(stage) + '" title="Separar em uma nova fase"><i class="fas fa-level-down-alt"></i></button>' : '') +
+                            '<button type="button" class="remove-stage" data-action="remove-stage" data-stage="' + escaparHtml(stage) + '" title="Remover da esteira"><i class="fas fa-times"></i></button>' +
+                            '</span>' +
+                            '</div>' +
+                            '<div class="stage-time-config">' +
+                            '<label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label>' +
+                            '<div class="stage-time-input-line">' +
+                            '<input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="' + inputValue + '" data-type="' + type + '" data-stage="' + escaparHtml(stage) + '">' +
+                            '<select class="stage-time-unit" data-type="' + type + '" data-stage="' + escaparHtml(stage) + '">' +
+                            '<option value="hours"' + hoursSelected + '>horas</option>' +
+                            '<option value="days"' + daysSelected + '>dias</option>' +
+                            '</select>' +
+                            '</div>' +
+                            '<span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span>' +
+                            '<span class="stage-time-error">Informe um número inteiro maior que zero.</span>' +
+                            '</div>' +
+                            '</div>';
+                    }).join('');
+                    return '<article class="phase" draggable="true" data-phase-index="' + phaseIndex + '">' +
+                        '<header class="phase-header"><strong>Fase ' + (phaseIndex + 1) + '</strong><span class="phase-header-meta">' + marker + phaseActions + '</span></header>' +
+                        '<div class="phase-body">' + chips +
+                        (phase.length > 1 ? '<div class="parallel-note"><i class="fas fa-code-branch mr-1"></i>Execução paralela</div>' : '') +
+                        '</div>' +
+                        '</article>';
+                }).join('') +
+                    '<button class="add-phase" type="button" data-action="pick-stage"><i class="fas fa-plus-circle d-block mb-2"></i><strong>Adicionar etapa</strong><small>nova fase ou paralelo</small></button>' +
+                    '</div>';
+            }
+
+            panel.innerHTML =
+                '<div class="pipeline-workspace">' +
+                '<aside class="stage-catalog">' +
+                '<div class="stage-catalog-title"><strong>' + definition.title + '</strong><small class="text-muted">Domínio</small></div>' +
+                '<div class="stage-search"><i class="fas fa-search"></i><input class="field stage-filter" type="search" placeholder="' + definition.searchPlaceholder + '" aria-label="' + definition.searchPlaceholder + '"></div>' +
+                '<div class="stage-list">' + catalogHtml + '</div>' +
+                '</aside>' +
+                '<div class="pipeline-builder">' +
+                '<div class="builder-toolbar">' +
+                '<div><strong>Organização das fases</strong><div class="builder-help">Arraste ou use as setas para reordenar</div></div>' +
+                '<div class="builder-toolbar-actions">' +
+                (type === 'documentos' ? '<button type="button" class="btn-sos btn-sos-sm btn-sos-outline-secondary" data-action="reset-pipeline"><i class="fas fa-undo mr-1"></i>Restaurar</button>' : '') +
+                '</div>' +
+                '</div>' +
+                '<div class="builder-instructions"><i class="fas fa-info-circle"></i><span><strong>Obrigatório:</strong> cada etapa monitorada deve ter tempo máximo sem avanço (horas ou dias corridos).</span></div>' +
+                flowHtml +
+                '</div>' +
+                '</div>';
+
+            vincularEventosDaEsteira(panel, type);
+            atualizarContadoresEsteira();
+        }
+
+        function vincularEventosDaEsteira(panel, type) {
+            var search = panel.querySelector('.stage-filter');
+            if (search) {
+                search.addEventListener('input', function() {
+                    var term = this.value.toLowerCase().trim();
+                    panel.querySelectorAll('.stage-option').forEach(function(option) {
+                        option.style.display = option.getAttribute('data-stage-name').toLowerCase().indexOf(term) > -1 ? 'flex' : 'none';
+                    });
+                });
+            }
+
+            panel.querySelectorAll('[data-action]').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    executarAcaoEsteira(type, this);
+                });
+            });
+
+            panel.querySelectorAll('.stage-time-value').forEach(function(input) {
+                input.addEventListener('input', function() {
+                    var stage = this.getAttribute('data-stage');
+                    obterLimiteEtapa(type, stage).value = this.value;
+                    limparErroTempoEtapa(this);
+                    marcarEsteiraAlterada();
+                    atualizarStatusEsteira(type);
+                });
+            });
+
+            panel.querySelectorAll('.stage-time-unit').forEach(function(select) {
+                select.addEventListener('change', function() {
+                    var stage = this.getAttribute('data-stage');
+                    obterLimiteEtapa(type, stage).unit = this.value;
+                    marcarEsteiraAlterada();
+                    atualizarStatusEsteira(type);
+                });
+            });
+
+            panel.querySelectorAll('.phase[draggable="true"]').forEach(function(phase) {
+                phase.addEventListener('dragstart', function(event) {
+                    draggedPhase = { type: type, index: Number(this.getAttribute('data-phase-index')) };
+                    this.classList.add('is-dragging');
+                    event.dataTransfer.effectAllowed = 'move';
+                });
+                phase.addEventListener('dragend', function() {
+                    draggedPhase = null;
+                    panel.querySelectorAll('.phase').forEach(function(item) {
+                        item.classList.remove('is-dragging', 'is-drop-target');
+                    });
+                });
+                phase.addEventListener('dragover', function(event) {
+                    if (draggedPhase && draggedPhase.type === type) {
+                        event.preventDefault();
+                        this.classList.add('is-drop-target');
+                    }
+                });
+                phase.addEventListener('dragleave', function() {
+                    this.classList.remove('is-drop-target');
+                });
+                phase.addEventListener('drop', function(event) {
+                    event.preventDefault();
+                    var targetIndex = Number(this.getAttribute('data-phase-index'));
+                    if (draggedPhase && draggedPhase.type === type && draggedPhase.index !== targetIndex) {
+                        moverFase(type, draggedPhase.index, targetIndex);
+                    }
+                });
+            });
+        }
+
+        function executarAcaoEsteira(type, button) {
+            var action = button.getAttribute('data-action');
+            var phaseIndex = Number(button.getAttribute('data-phase'));
+            var stage = button.getAttribute('data-stage');
+
+            if (action === 'add-stage') {
+                abrirDialogEsteira(type, stage);
+            } else if (action === 'pick-stage') {
+                abrirDialogEsteira(type, null);
+            } else if (action === 'remove-stage') {
+                removerEtapa(type, stage);
+            } else if (action === 'move-phase-left') {
+                moverFase(type, phaseIndex, phaseIndex - 1);
+            } else if (action === 'move-phase-right') {
+                moverFase(type, phaseIndex, phaseIndex + 1);
+            } else if (action === 'move-stage-left') {
+                moverEtapaParaFaseVizinha(type, phaseIndex, stage, -1);
+            } else if (action === 'move-stage-right') {
+                moverEtapaParaFaseVizinha(type, phaseIndex, stage, 1);
+            } else if (action === 'split-stage') {
+                separarEtapaEmNovaFase(type, phaseIndex, stage);
+            } else if (action === 'reset-pipeline') {
+                restaurarEsteira(type);
+            }
+        }
+
+        function abrirDialogEsteira(type, stage) {
+            var available = pipelineDefinitions[type].stages.filter(function(item) {
+                return !etapaEstaNaEsteira(type, item);
+            });
+            if (available.length === 0) {
+                mostrarToast('Todas as etapas disponíveis já fazem parte desta esteira.', 'warning');
+                return;
+            }
+
+            pendingPipelineInsert = { type: type, stage: stage || available[0], chooseStage: !stage };
+            var stageBox = document.getElementById('dialogStageName');
+            if (stage) {
+                stageBox.textContent = stage;
+            } else {
+                stageBox.innerHTML = '<label for="dialogStagePicker" class="small mb-1">Etapa disponível</label>' +
+                    '<select class="field field-sm" id="dialogStagePicker">' +
+                    available.map(function(item) { return '<option value="' + escaparHtml(item) + '">' + escaparHtml(item) + '</option>'; }).join('') +
+                    '</select>';
+            }
+
+            var phaseSelect = document.getElementById('dialogPhaseSelect');
+            phaseSelect.innerHTML = pipelineState[type].map(function(phase, index) {
+                return '<option value="' + index + '">Fase ' + (index + 1) + ' — ' + escaparHtml(phase.join(' + ')) + '</option>';
+            }).join('');
+
+            var newMode = document.querySelector('input[name="insertMode"][value="new"]');
+            var parallelMode = document.querySelector('input[name="insertMode"][value="parallel"]');
+            newMode.checked = true;
+            parallelMode.disabled = pipelineState[type].length === 0;
+            phaseSelect.disabled = true;
+            document.getElementById('pipelineDialogBackdrop').classList.add('is-open');
+            document.getElementById('pipelineDialogConfirm').focus();
+        }
+
+        function fecharDialogEsteira() {
+            document.getElementById('pipelineDialogBackdrop').classList.remove('is-open');
+            pendingPipelineInsert = null;
+        }
+
+        function confirmarInsercaoEsteira() {
+            if (!pendingPipelineInsert) return;
+            var type = pendingPipelineInsert.type;
+            var stage = pendingPipelineInsert.stage;
+            if (pendingPipelineInsert.chooseStage) {
+                var picker = document.getElementById('dialogStagePicker');
+                stage = picker ? picker.value : stage;
+            }
+            obterLimiteEtapa(type, stage);
+            var mode = document.querySelector('input[name="insertMode"]:checked').value;
+            if (mode === 'parallel' && pipelineState[type].length > 0) {
+                var phaseIndex = Number(document.getElementById('dialogPhaseSelect').value);
+                pipelineState[type][phaseIndex].push(stage);
+                mostrarToast('"' + stage + '" adicionada em paralelo à Fase ' + (phaseIndex + 1) + '.', 'success');
+            } else {
+                pipelineState[type].push([stage]);
+                mostrarToast('"' + stage + '" adicionada como nova fase no final da esteira.', 'success');
+            }
+            fecharDialogEsteira();
+            aposAlterarEsteira(type);
+            window.setTimeout(function() {
+                var newField = document.querySelector('#pipeline-' + type + ' .stage-time-value[data-stage="' + stage.replace(/"/g, '\\"') + '"]');
+                if (newField && !newField.value) newField.focus();
+            }, 0);
+        }
+
+        function removerEtapa(type, stage) {
+            if (!window.confirm('Remover "' + stage + '" do monitoramento do Sentinela?')) return;
+            pipelineState[type] = pipelineState[type].map(function(phase) {
+                return phase.filter(function(item) { return item !== stage; });
+            }).filter(function(phase) { return phase.length > 0; });
+            mostrarToast('"' + stage + '" foi removida da esteira. O domínio do projeto não foi alterado.', 'warning');
+            aposAlterarEsteira(type);
+        }
+
+        function moverFase(type, fromIndex, toIndex) {
+            var phases = pipelineState[type];
+            if (fromIndex < 0 || toIndex < 0 || fromIndex >= phases.length || toIndex >= phases.length) return;
+            var moved = phases.splice(fromIndex, 1)[0];
+            phases.splice(toIndex, 0, moved);
+            mostrarToast('Fase movida para a posição ' + (toIndex + 1) + '.', 'success');
+            aposAlterarEsteira(type);
+        }
+
+        function moverEtapaParaFaseVizinha(type, phaseIndex, stage, direction) {
+            var phases = pipelineState[type];
+            var targetIndex = phaseIndex + direction;
+            if (targetIndex < 0 || targetIndex >= phases.length) return;
+            phases[phaseIndex] = phases[phaseIndex].filter(function(item) { return item !== stage; });
+            if (phases[phaseIndex].length === 0) {
+                phases.splice(phaseIndex, 1);
+                if (direction > 0) targetIndex -= 1;
+            }
+            phases[targetIndex].push(stage);
+            mostrarToast('"' + stage + '" agora ocorre em paralelo na Fase ' + (targetIndex + 1) + '.', 'success');
+            aposAlterarEsteira(type);
+        }
+
+        function separarEtapaEmNovaFase(type, phaseIndex, stage) {
+            var phase = pipelineState[type][phaseIndex];
+            if (!phase || phase.length < 2) return;
+            pipelineState[type][phaseIndex] = phase.filter(function(item) { return item !== stage; });
+            pipelineState[type].splice(phaseIndex + 1, 0, [stage]);
+            mostrarToast('"' + stage + '" foi separada em uma nova fase sequencial.', 'success');
+            aposAlterarEsteira(type);
+        }
+
+        function restaurarEsteira(type) {
+            if (!window.confirm('Restaurar a última configuração salva desta esteira?')) return;
+            pipelineState[type] = JSON.parse(JSON.stringify(pipelineSavedState[type]));
+            stageTimeLimits[type] = JSON.parse(JSON.stringify(stageTimeSavedState[type]));
+            renderizarEsteira(type);
+            atualizarStatusEsteira(type);
+            atualizarIndicadorAlteracoes();
+            mostrarToast('A esteira foi restaurada para a última configuração salva.', 'success');
+        }
+
+        function aposAlterarEsteira(type) {
+            marcarEsteiraAlterada();
+            renderizarEsteira(type);
+            atualizarStatusEsteira(type);
+        }
+
+        function marcarEsteiraAlterada() {
+            document.getElementById('pipelineUnsaved').classList.add('show');
+        }
+
+        function atualizarIndicadorAlteracoes() {
+            var changed = JSON.stringify(pipelineState) !== JSON.stringify(pipelineSavedState) ||
+                JSON.stringify(stageTimeLimits) !== JSON.stringify(stageTimeSavedState);
+            document.getElementById('pipelineUnsaved').classList.toggle('show', changed);
+        }
+
+        function atualizarContadoresEsteira() {
+            var docs = contarEtapas('documentos');
+            var boxes = contarEtapas('caixas');
+            document.getElementById('docCount').textContent = docs;
+            document.getElementById('boxCount').textContent = boxes;
+        }
+
+        function contarTemposPendentes(type) {
+            var pendentes = 0;
+            pipelineState[type].forEach(function(phase) {
+                phase.forEach(function(stage) {
+                    var limit = obterLimiteEtapa(type, stage);
+                    var value = Number(String(limit.value || '').trim());
+                    if (!Number.isInteger(value) || value <= 0 || (limit.unit !== 'hours' && limit.unit !== 'days')) {
+                        pendentes += 1;
+                    }
+                });
+            });
+            return pendentes;
+        }
+
+        function atualizarStatusEsteira(type) {
+            var status = document.getElementById('pipelineValidationStatus');
+            var count = contarEtapas(type);
+            if (count === 0) {
+                status.classList.add('is-invalid');
+                status.innerHTML = '<i class="fas fa-info-circle mr-1"></i> Sem etapas monitoradas';
+            } else if (contarTemposPendentes(type) > 0) {
+                var pendentes = contarTemposPendentes(type);
+                status.classList.add('is-invalid');
+                status.innerHTML = '<i class="fas fa-info-circle mr-1"></i> ' + pendentes + (pendentes === 1 ? ' tempo pendente' : ' tempos pendentes');
+            } else {
+                status.classList.remove('is-invalid');
+                status.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Válida';
+            }
+        }
+
+        function limparErroTempoEtapa(campo) {
+            var config = campo.closest('.stage-time-config');
+            var mensagem = config ? config.querySelector('.stage-time-error') : null;
+            campo.classList.remove('has-error');
+            campo.removeAttribute('aria-invalid');
+            if (mensagem) mensagem.classList.remove('is-visible');
+        }
+
+        function validarTemposEtapas() {
+            var primeiroInvalido = null;
+            var primeiraEtapa = '';
+            var primeiroTipo = '';
+
+            ['documentos', 'caixas'].forEach(function(type) {
+                pipelineState[type].forEach(function(phase) {
+                    phase.forEach(function(stage) {
+                        var limit = obterLimiteEtapa(type, stage);
+                        var valueText = String(limit.value || '').trim();
+                        var value = Number(valueText);
+                        var valido = valueText !== '' && Number.isInteger(value) && value > 0 &&
+                            (limit.unit === 'hours' || limit.unit === 'days');
+                        var campo = document.querySelector('#pipeline-' + type + ' .stage-time-value[data-stage="' + stage.replace(/"/g, '\\"') + '"]');
+                        if (!campo) return;
+                        var config = campo.closest('.stage-time-config');
+                        var mensagem = config ? config.querySelector('.stage-time-error') : null;
+                        campo.classList.toggle('has-error', !valido);
+                        if (!valido) {
+                            campo.setAttribute('aria-invalid', 'true');
+                            if (mensagem) mensagem.classList.add('is-visible');
+                            if (!primeiroInvalido) {
+                                primeiroInvalido = campo;
+                                primeiraEtapa = stage;
+                                primeiroTipo = type;
+                            }
+                        } else {
+                            limparErroTempoEtapa(campo);
+                        }
+                    });
+                });
+                atualizarStatusEsteira(type);
+            });
+
+            if (primeiroInvalido) {
+                // Ativar a aba correta
+                document.querySelectorAll('.pipeline-tab').forEach(function(tab) {
+                    var active = tab.getAttribute('data-pipeline') === primeiroTipo;
+                    tab.classList.toggle('active', active);
+                    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+                });
+                document.querySelectorAll('.pipeline-panel').forEach(function(panel) {
+                    panel.classList.toggle('active', panel.id === 'pipeline-' + primeiroTipo);
+                });
+                mostrarToast('Informe o tempo máximo sem avanço da etapa "' + primeiraEtapa + '".', 'warning');
+                primeiroInvalido.focus();
+                primeiroInvalido.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return false;
+            }
+            return true;
+        }
+
+        // ===== MODAL POPUP =====
+        function renderizarParametrosModal() {
+            var tbody = document.getElementById('paramTableBody');
+            tbody.innerHTML = parametrosLista.map(function(param) {
+                return '<tr>' +
+                    '<td><label class="checkbox-item"><input type="checkbox" checked> ' + escaparHtml(param) + '</label></td>' +
+                    '<td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked><span class="slider"></span></label></td>' +
+                    '</tr>';
+            }).join('');
+            document.getElementById('modalParamCount').textContent = parametrosLista.length;
+        }
+
+        function abrirPopup() {
+            document.getElementById('popupModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('searchParam').value = '';
+            document.getElementById('clearSearch').style.display = 'none';
+            mostrarTodosParametros();
+        }
+
+        function fecharPopup() {
+            document.getElementById('popupModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function fecharPopupBackdrop(e) {
+            if (e.target.id === 'popupModal') fecharPopup();
+        }
+
+        function confirmarSelecao() {
+            mostrarToast('Parâmetros de exibição do Sentinela atualizados com sucesso!', 'success');
+            fecharPopup();
+        }
+
+        function filtrarParametros() {
+            var input = document.getElementById('searchParam');
+            var filter = input.value.toLowerCase().trim();
+            var rows = document.querySelectorAll('#paramTableBody tr');
+            var count = 0;
+            var clearBtn = document.getElementById('clearSearch');
+
+            if (filter.length > 0) {
+                clearBtn.style.display = 'inline';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+
+            rows.forEach(function(row) {
+                var text = row.textContent.toLowerCase();
+                if (text.indexOf(filter) > -1) {
+                    row.style.display = '';
+                    count++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            document.getElementById('resultCount').textContent = 'Mostrando ' + count + ' de ' + rows.length + ' parâmetros';
+            document.getElementById('modalParamCount').textContent = count;
+        }
+
+        function limparPesquisa() {
+            document.getElementById('searchParam').value = '';
+            document.getElementById('clearSearch').style.display = 'none';
+            mostrarTodosParametros();
+        }
+
+        function mostrarTodosParametros() {
+            var rows = document.querySelectorAll('#paramTableBody tr');
+            rows.forEach(function(row) {
+                row.style.display = '';
+            });
+            document.getElementById('resultCount').textContent = 'Mostrando ' + rows.length + ' de ' + rows.length + ' parâmetros';
+            document.getElementById('modalParamCount').textContent = rows.length;
+        }
+
+        // ===== TOAST =====
+        function mostrarToast(message, type) {
+            var stack = document.getElementById('toastStack');
+            if (!stack) return;
+            var toast = document.createElement('div');
+            toast.className = 'prototype-toast ' + (type || '');
+            toast.innerHTML = '<i class="fas ' + (type === 'success' ? 'fa-check-circle' : 'fa-info-circle') + '"></i><span>' + escaparHtml(message) + '</span>';
+            stack.appendChild(toast);
+            window.setTimeout(function() {
+                if (toast.parentNode) toast.parentNode.removeChild(toast);
+            }, 4200);
+        }
+
+        // ===== UTILITÁRIOS =====
+        function escaparHtml(value) {
+            return String(value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+    </script>
+
+</body>
+</html>
