@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!-- saved from url=(0051)https://macielguilherme.github.io/sentinela2/2.html -->
 <html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -744,17 +743,7 @@
             cursor: not-allowed;
         }
         .phase-marker {
-            display: inline-block;
-            padding: .08rem .25rem;
-            border-radius: 8px;
-            font-size: .5rem;
-            font-weight: 700;
-            background: #e7f5ec;
-            color: #267a42;
-        }
-        .phase-marker.end {
-            background: #eef0f2;
-            color: #59666e;
+            display: none; /* Removido completamente */
         }
         .parallel-note {
             margin-top: .15rem;
@@ -1480,7 +1469,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
             <div>
                 <h4 class="mb-1">Configuração de Parâmetros de Exibição</h4>
-                <p class="text-muted small mb-0">Gerencie projetos, esteiras monitoradas e situações gerenciais do Sentinela</p>
+                <p class="text-muted small mb-0">A Configuração do Sentinela define as posições monitoradas. Gerencie projetos, esteiras monitoradas e situações gerenciais do Sentinela</p>
             </div>
             <div>
                 <button class="btn-sos btn-sos-success" id="btnSalvarGeral">
@@ -1543,7 +1532,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="pipeline-heading">
-                        <span class="pipeline-title">Esteiras Monitoradas</span>
+                        <span class="pipeline-title">Posições monitoradas</span>
                         <span class="pipeline-summary">
                             <span class="unsaved-badge" id="pipelineUnsaved">Alterações não salvas</span>
                             <span class="text-muted">por projeto</span>
@@ -1551,10 +1540,10 @@
                     </div>
                     <div class="pipeline-tabs" role="tablist">
                         <button class="pipeline-tab" data-pipeline="documentos" role="tab" aria-selected="false">
-                            <i class="fas fa-file-alt mr-1"></i> Documentos <span class="badge-sos badge-sos-light" id="docCount">5</span>
+                            <i class="fas fa-file-alt mr-1"></i> Etapas Documentais monitoradas <span class="badge-sos badge-sos-light" id="docCount">5</span>
                         </button>
                         <button class="pipeline-tab active" data-pipeline="caixas" role="tab" aria-selected="true">
-                            <i class="fas fa-archive mr-1"></i> Caixas <span class="badge-sos badge-sos-light" id="boxCount">4</span>
+                            <i class="fas fa-archive mr-1"></i> Status da Gestão Documental monitorados <span class="badge-sos badge-sos-light" id="boxCount">4</span>
                         </button>
                     </div>
                 </div>
@@ -2150,9 +2139,7 @@
                     '</div>';
             } else {
                 flowHtml = '<div class="phase-flow">' + phases.map(function(phase, phaseIndex) {
-                    var marker = phaseIndex === 0 ?
-                        '<span class="phase-marker">INÍCIO</span>' :
-                        (phaseIndex === phases.length - 1 ? '<span class="phase-marker end">TÉRMINO</span>' : '');
+                    // Removido o marker (INÍCIO/TÉRMINO) e os números das fases
                     var chips = phase.map(function(stage) {
                         var timeLimit = obterLimiteEtapa(type, stage);
                         var inputValue = escaparHtml(timeLimit.value || '');
@@ -2180,7 +2167,7 @@
                             '</div>';
                     }).join('');
                     return '<article class="phase" data-phase-index="' + phaseIndex + '">' +
-                        '<header class="phase-header"><strong>Fase ' + (phaseIndex + 1) + '</strong><span class="phase-header-meta">' + marker + '</span></header>' +
+                        '<header class="phase-header"><strong></strong><span class="phase-header-meta"></span></header>' +
                         '<div class="phase-body">' + chips +
                         (phase.length > 1 ? '<div class="parallel-note"><i class="fas fa-code-branch mr-1"></i>Execução paralela</div>' : '') +
                         '</div>' +
