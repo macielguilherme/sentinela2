@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- saved from url=(0051)https://macielguilherme.github.io/sentinela2/2.html -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DocZ - Sentinela - Configuração de Parâmetros</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./DocZ - Sentinela - Configuração de Parâmetros_files/bootstrap.min.css">
     <style>
         /* ==========================================================================
            DESIGN SYSTEM SOS DOCS - PADRÃO DOCZ SENTINELA
@@ -651,9 +652,6 @@
             box-shadow: 0 1px 2px rgba(0, 0, 0, .035);
             transition: all 0.15s;
         }
-        .phase[draggable="true"] { cursor: grab; }
-        .phase.is-dragging { opacity: .45; cursor: grabbing; }
-        .phase.is-drop-target { outline: 2px dashed #1778a8; outline-offset: 2px; }
         .phase:not(:last-child)::after {
             content: "\2192";
             position: absolute;
@@ -682,33 +680,6 @@
             display: inline-flex;
             align-items: center;
             gap: .1rem;
-        }
-        .phase-actions {
-            display: inline-flex;
-            gap: .05rem;
-        }
-        .phase-actions button {
-            width: 18px;
-            height: 18px;
-            border: 1px solid transparent;
-            border-radius: 3px;
-            background: transparent;
-            color: #71808a;
-            padding: 0;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.6rem;
-        }
-        .phase-actions button:hover:not(:disabled) {
-            background: #fff;
-            border-color: #cad6dc;
-            color: #1778a8;
-        }
-        .phase-actions button:disabled {
-            opacity: .3;
-            cursor: not-allowed;
         }
         .phase-body {
             padding: .25rem;
@@ -808,8 +779,9 @@
             font-weight: 600;
         }
         .stage-time-input-line {
-            display: grid;
-            grid-template-columns: 50px minmax(0, 1fr);
+            display: flex;
+            align-items: center;
+            gap: .2rem;
         }
         .stage-time-value, .stage-time-unit {
             height: 22px;
@@ -820,15 +792,18 @@
             outline: none;
         }
         .stage-time-value {
-            width: 100%;
+            width: 0;
+            min-width: 46px;
+            flex: 0 0 46px;
             padding: .1rem .3rem;
-            border-radius: 3px 0 0 3px;
+            border-radius: 3px;
         }
         .stage-time-unit {
-            width: 100%;
+            width: auto;
+            min-width: 0;
+            flex: 1 1 auto;
             padding: .1rem .2rem;
-            border-left: 0;
-            border-radius: 0 3px 3px 0;
+            border-radius: 3px;
             font-size: .55rem;
         }
         .stage-time-value:focus, .stage-time-unit:focus {
@@ -1458,7 +1433,6 @@
         .fa-search::before { content: "⌕"; }
         .fa-save::before { content: "▣"; }
         .fa-undo::before { content: "↶"; }
-        .fa-grip-vertical::before { content: "⋮"; font-weight: 700; }
         .fa-code-branch::before { content: "⑂"; }
         .fa-level-down-alt::before { content: "↳"; }
         .fa-stream::before { content: "≋"; }
@@ -1472,7 +1446,7 @@
         .fa-reply::before { content: "↩"; }
         .fa-sign-out-alt::before { content: "⏻"; }
     </style>
-</head>
+<meta id="dcngeagmmhegagicpcmpinaoklddcgon"></head>
 <body>
 
     <!-- ===== TOPNAV - IDÊNTICO AO SENTINELA ===== -->
@@ -1482,9 +1456,9 @@
                 <ul>
                     <li><span><strong>DocZ GED / SIGAD</strong></span></li>
                     <li><span><strong>Módulo Sentinela</strong></span></li>
-                    <li><a href="#"><span>guilherme.ribeiro@sosdocs.com.br</span></a></li>
-                    <li><a href="#"><span>Voltar</span></a></li>
-                    <li><a href="#"><span>Logout</span></a></li>
+                    <li><a href="https://macielguilherme.github.io/sentinela2/2.html#"><span>guilherme.ribeiro@sosdocs.com.br</span></a></li>
+                    <li><a href="https://macielguilherme.github.io/sentinela2/2.html#"><span>Voltar</span></a></li>
+                    <li><a href="https://macielguilherme.github.io/sentinela2/2.html#"><span>Logout</span></a></li>
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -1497,7 +1471,7 @@
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Sentinela</a></li>
+                <li class="breadcrumb-item"><a href="https://macielguilherme.github.io/sentinela2/2.html#">Sentinela</a></li>
                 <li class="breadcrumb-item active">Configuração de Parâmetros de Exibição</li>
             </ol>
         </nav>
@@ -1592,230 +1566,9 @@
                     <span class="pipeline-status" id="pipelineValidationStatus"><i class="fas fa-check-circle mr-1"></i> Válida</span>
                 </div>
 
-                <section class="pipeline-panel" id="pipeline-documentos" data-type="documentos" role="tabpanel">
-                    <div class="pipeline-workspace">
-                        <aside class="stage-catalog">
-                            <div class="stage-catalog-title"><strong>Etapas Documentais</strong><small class="text-muted">Domínio</small></div>
-                            <div class="stage-search"><i class="fas fa-search"></i><input class="field stage-filter" type="search" placeholder="Localizar etapa..." aria-label="Localizar etapa..."></div>
-                            <div class="stage-list">
-                                <div class="stage-option is-active" data-stage-name="Recebimento">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Recebimento</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Recebimento"><i class="fas fa-times mr-1"></i>Remover</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-active" data-stage-name="Preparação">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Preparação</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Preparação"><i class="fas fa-times mr-1"></i>Remover</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-active" data-stage-name="Higienização">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Higienização</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Higienização"><i class="fas fa-times mr-1"></i>Remover</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-active" data-stage-name="Digitalização">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Digitalização</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Digitalização"><i class="fas fa-times mr-1"></i>Remover</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-active" data-stage-name="Controle de Qualidade">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Controle de Qualidade</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Controle de Qualidade"><i class="fas fa-times mr-1"></i>Remover</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-off" data-stage-name="Indexação complementar">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Indexação complementar</strong><span class="stage-state"><i class="fas fa-circle"></i>Não monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-add-btn" data-action="add-stage" data-stage="Indexação complementar"><i class="fas fa-plus mr-1"></i>Adicionar</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-off" data-stage-name="Assinatura digital">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Assinatura digital</strong><span class="stage-state"><i class="fas fa-circle"></i>Não monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-add-btn" data-action="add-stage" data-stage="Assinatura digital"><i class="fas fa-plus mr-1"></i>Adicionar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </aside>
-                        <div class="pipeline-builder">
-                            <div class="builder-toolbar">
-                                <div><strong>Organização das fases</strong><div class="builder-help">Arraste ou use as setas para reordenar</div></div>
-                                <div class="builder-toolbar-actions">
-                                    <button type="button" class="btn-sos btn-sos-sm btn-sos-outline-secondary" data-action="reset-pipeline"><i class="fas fa-undo mr-1"></i>Restaurar</button>
-                                </div>
-                            </div>
-                            <div class="builder-instructions"><i class="fas fa-info-circle"></i><span><strong>Obrigatório:</strong> cada etapa monitorada deve ter tempo máximo sem avanço (horas ou dias corridos).</span></div>
-                            <div class="phase-flow">
-                                <article class="phase" draggable="true" data-phase-index="0">
-                                    <header class="phase-header"><strong>Fase 1</strong><span class="phase-header-meta"><span class="phase-marker">INÍCIO</span><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="0" title="Mover fase para a esquerda" disabled=""><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="0" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
-                                    <div class="phase-body">
-                                        <div class="phase-chip">
-                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Recebimento<small>Etapa documental</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="0" data-stage="Recebimento" title="Mover para a fase anterior" disabled=""><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="0" data-stage="Recebimento" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Recebimento" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
-                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="4" data-type="documentos" data-stage="Recebimento"><select class="stage-time-unit" data-type="documentos" data-stage="Recebimento"><option value="hours" selected="">horas</option><option value="days">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="phase" draggable="true" data-phase-index="1">
-                                    <header class="phase-header"><strong>Fase 2</strong><span class="phase-header-meta"><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="1" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="1" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
-                                    <div class="phase-body">
-                                        <div class="phase-chip">
-                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Preparação<small>Etapa documental</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="1" data-stage="Preparação" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="1" data-stage="Preparação" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" data-action="split-stage" data-phase="1" data-stage="Preparação" title="Separar em uma nova fase"><i class="fas fa-level-down-alt"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Preparação" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
-                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="8" data-type="documentos" data-stage="Preparação"><select class="stage-time-unit" data-type="documentos" data-stage="Preparação"><option value="hours" selected="">horas</option><option value="days">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
-                                        </div>
-                                        <div class="phase-chip">
-                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Higienização<small>Etapa documental</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="1" data-stage="Higienização" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="1" data-stage="Higienização" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" data-action="split-stage" data-phase="1" data-stage="Higienização" title="Separar em uma nova fase"><i class="fas fa-level-down-alt"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Higienização" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
-                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="1" data-type="documentos" data-stage="Higienização"><select class="stage-time-unit" data-type="documentos" data-stage="Higienização"><option value="hours">horas</option><option value="days" selected="">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
-                                        </div>
-                                        <div class="parallel-note"><i class="fas fa-code-branch mr-1"></i>Execução paralela</div>
-                                    </div>
-                                </article>
-                                <article class="phase" draggable="true" data-phase-index="2">
-                                    <header class="phase-header"><strong>Fase 3</strong><span class="phase-header-meta"><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="2" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="2" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
-                                    <div class="phase-body">
-                                        <div class="phase-chip">
-                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Digitalização<small>Etapa documental</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="2" data-stage="Digitalização" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="2" data-stage="Digitalização" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Digitalização" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
-                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="2" data-type="documentos" data-stage="Digitalização"><select class="stage-time-unit" data-type="documentos" data-stage="Digitalização"><option value="hours">horas</option><option value="days" selected="">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="phase" draggable="true" data-phase-index="3">
-                                    <header class="phase-header"><strong>Fase 4</strong><span class="phase-header-meta"><span class="phase-marker end">TÉRMINO</span><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="3" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="3" title="Mover fase para a direita" disabled=""><i class="fas fa-chevron-right"></i></button></span></span></header>
-                                    <div class="phase-body">
-                                        <div class="phase-chip">
-                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Controle de Qualidade<small>Etapa documental</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="3" data-stage="Controle de Qualidade" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="3" data-stage="Controle de Qualidade" title="Mover para a próxima fase" disabled=""><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Controle de Qualidade" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
-                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="1" data-type="documentos" data-stage="Controle de Qualidade"><select class="stage-time-unit" data-type="documentos" data-stage="Controle de Qualidade"><option value="hours">horas</option><option value="days" selected="">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <button class="add-phase" type="button" data-action="pick-stage"><i class="fas fa-plus-circle d-block mb-2"></i><strong>Adicionar etapa</strong><small>nova fase ou paralelo</small></button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <section class="pipeline-panel" id="pipeline-documentos" data-type="documentos" role="tabpanel"></section>
 
-                <section class="pipeline-panel active" id="pipeline-caixas" data-type="caixas" role="tabpanel">
-                    <div class="pipeline-workspace">
-                        <aside class="stage-catalog">
-                            <div class="stage-catalog-title"><strong>Status da Gestão Documental</strong><small class="text-muted">Domínio</small></div>
-                            <div class="stage-search"><i class="fas fa-search"></i><input class="field stage-filter" type="search" placeholder="Localizar status..." aria-label="Localizar status..."></div>
-                            <div class="stage-list">
-                                <div class="stage-option is-active" data-stage-name="Recebida">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Recebida</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Recebida"><i class="fas fa-times mr-1"></i>Remover</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-active" data-stage-name="Em preparação">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Em preparação</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Em preparação"><i class="fas fa-times mr-1"></i>Remover</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-active" data-stage-name="Em processamento">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Em processamento</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Em processamento"><i class="fas fa-times mr-1"></i>Remover</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-active" data-stage-name="Concluída">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Concluída</strong><span class="stage-state"><i class="fas fa-check-circle"></i>Monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-remove-btn" data-action="remove-stage" data-stage="Concluída"><i class="fas fa-times mr-1"></i>Remover</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-off" data-stage-name="Em auditoria">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Em auditoria</strong><span class="stage-state"><i class="fas fa-circle"></i>Não monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-add-btn" data-action="add-stage" data-stage="Em auditoria"><i class="fas fa-plus mr-1"></i>Adicionar</button>
-                                    </div>
-                                </div>
-                                <div class="stage-option is-off" data-stage-name="Em movimentação">
-                                    <div class="stage-option-main">
-                                        <span class="stage-option-copy"><strong>Em movimentação</strong><span class="stage-state"><i class="fas fa-circle"></i>Não monitorada</span></span>
-                                    </div>
-                                    <div class="stage-option-actions">
-                                        <button type="button" class="stage-add-btn" data-action="add-stage" data-stage="Em movimentação"><i class="fas fa-plus mr-1"></i>Adicionar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </aside>
-                        <div class="pipeline-builder">
-                            <div class="builder-toolbar">
-                                <div><strong>Organização das fases</strong><div class="builder-help">Arraste ou use as setas para reordenar</div></div>
-                                <div class="builder-toolbar-actions"></div>
-                            </div>
-                            <div class="builder-instructions"><i class="fas fa-info-circle"></i><span><strong>Obrigatório:</strong> cada etapa monitorada deve ter tempo máximo sem avanço (horas ou dias corridos).</span></div>
-                            <div class="phase-flow">
-                                <article class="phase" draggable="true" data-phase-index="0">
-                                    <header class="phase-header"><strong>Fase 1</strong><span class="phase-header-meta"><span class="phase-marker">INÍCIO</span><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="0" title="Mover fase para a esquerda" disabled=""><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="0" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
-                                    <div class="phase-body">
-                                        <div class="phase-chip">
-                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Recebida<small>Status da gestão</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="0" data-stage="Recebida" title="Mover para a fase anterior" disabled=""><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="0" data-stage="Recebida" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Recebida" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
-                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="4" data-type="caixas" data-stage="Recebida"><select class="stage-time-unit" data-type="caixas" data-stage="Recebida"><option value="hours" selected="">horas</option><option value="days">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="phase" draggable="true" data-phase-index="1">
-                                    <header class="phase-header"><strong>Fase 2</strong><span class="phase-header-meta"><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="1" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="1" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
-                                    <div class="phase-body">
-                                        <div class="phase-chip">
-                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Em preparação<small>Status da gestão</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="1" data-stage="Em preparação" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="1" data-stage="Em preparação" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Em preparação" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
-                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="8" data-type="caixas" data-stage="Em preparação"><select class="stage-time-unit" data-type="caixas" data-stage="Em preparação"><option value="hours" selected="">horas</option><option value="days">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="phase" draggable="true" data-phase-index="2">
-                                    <header class="phase-header"><strong>Fase 3</strong><span class="phase-header-meta"><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="2" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="2" title="Mover fase para a direita"><i class="fas fa-chevron-right"></i></button></span></span></header>
-                                    <div class="phase-body">
-                                        <div class="phase-chip">
-                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Em processamento<small>Status da gestão</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="2" data-stage="Em processamento" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="2" data-stage="Em processamento" title="Mover para a próxima fase"><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Em processamento" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
-                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="2" data-type="caixas" data-stage="Em processamento"><select class="stage-time-unit" data-type="caixas" data-stage="Em processamento"><option value="hours">horas</option><option value="days" selected="">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="phase" draggable="true" data-phase-index="3">
-                                    <header class="phase-header"><strong>Fase 4</strong><span class="phase-header-meta"><span class="phase-marker end">TÉRMINO</span><span class="phase-actions"><button type="button" data-action="move-phase-left" data-phase="3" title="Mover fase para a esquerda"><i class="fas fa-chevron-left"></i></button><button type="button" data-action="move-phase-right" data-phase="3" title="Mover fase para a direita" disabled=""><i class="fas fa-chevron-right"></i></button></span></span></header>
-                                    <div class="phase-body">
-                                        <div class="phase-chip">
-                                            <div class="phase-chip-main"><i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i><span class="phase-chip-copy">Concluída<small>Status da gestão</small></span><span class="chip-actions"><button type="button" data-action="move-stage-left" data-phase="3" data-stage="Concluída" title="Mover para a fase anterior"><i class="fas fa-angle-left"></i></button><button type="button" data-action="move-stage-right" data-phase="3" data-stage="Concluída" title="Mover para a próxima fase" disabled=""><i class="fas fa-angle-right"></i></button><button type="button" class="remove-stage" data-action="remove-stage" data-stage="Concluída" title="Remover da esteira"><i class="fas fa-times"></i></button></span></div>
-                                            <div class="stage-time-config"><label class="stage-time-label">Tempo máximo sem avanço <span class="required-indicator">*</span></label><div class="stage-time-input-line"><input type="number" class="stage-time-value" min="1" step="1" placeholder="Qtd." value="1" data-type="caixas" data-stage="Concluída"><select class="stage-time-unit" data-type="caixas" data-stage="Concluída"><option value="hours">horas</option><option value="days" selected="">dias</option></select></div><span class="stage-time-help">Contagem contínua desde a entrada nesta etapa.</span><span class="stage-time-error">Informe um número inteiro maior que zero.</span></div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <button class="add-phase" type="button" data-action="pick-stage"><i class="fas fa-plus-circle d-block mb-2"></i><strong>Adicionar etapa</strong><small>nova fase ou paralelo</small></button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <section class="pipeline-panel active" id="pipeline-caixas" data-type="caixas" role="tabpanel"></section>
             </div>
         </div>
 
@@ -1825,7 +1578,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <span>Configuração de Situações Gerenciais</span>
-                        <span class="classification-summary" id="classificationSummary">6 de 6 habilitadas</span>
+                        <span class="classification-summary" id="classificationSummary">1 de 6 habilitada</span>
                     </div>
 
                     <div class="card-body p-0">
@@ -1838,7 +1591,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="classification-main-row">
+                                <tr class="classification-main-row is-disabled">
                                     <td><strong>Com movimentação no período</strong></td>
                                     <td><span class="classification-rule">O objeto teve ao menos uma alteração de etapa ou status no período consultado.</span></td>
                                     <td class="text-center">
@@ -1849,7 +1602,7 @@
                                     </td>
                                 </tr>
 
-                                <tr class="classification-main-row">
+                                <tr class="classification-main-row is-disabled">
                                     <td>
                                         <strong>Sem movimentação no período</strong>
                                         <span class="uses-time-badge">USA TEMPO</span>
@@ -1857,12 +1610,12 @@
                                     <td><span class="classification-rule">O objeto não teve alteração de etapa ou status no período consultado.</span></td>
                                     <td class="text-center">
                                         <label class="switch-sos">
-                                            <input type="checkbox" class="classification-toggle" id="classSemMovimentacao" data-classification-name="Sem movimentação no período" aria-expanded="true" aria-controls="configSemMovimentacao">
+                                            <input type="checkbox" class="classification-toggle" id="classSemMovimentacao" data-classification-name="Sem movimentação no período" aria-expanded="false" aria-controls="configSemMovimentacao">
                                             <span class="slider"></span>
                                         </label>
                                     </td>
                                 </tr>
-                                <tr class="detail-row is-open" id="configSemMovimentacao" data-for="classSemMovimentacao">
+                                <tr class="detail-row" id="configSemMovimentacao" data-for="classSemMovimentacao">
                                     <td colspan="3">
                                         <div class="classification-config">
                                             <div class="classification-config-copy">
@@ -1872,10 +1625,10 @@
                                             <div class="classification-minutes-field">
                                                 <label for="minutesSemMovimentacao">Defina o tempo para a situação <span class="required-indicator">*</span></label>
                                                 <div class="minutes-input-line">
-                                                    <input type="number" class="classification-minutes" id="minutesSemMovimentacao" min="1" step="1" placeholder="Informe o tempo" required="">
+                                                    <input type="number" class="classification-minutes" id="minutesSemMovimentacao" min="1" step="1" placeholder="Informe o tempo" disabled="">
                                                     <span class="minutes-input-unit">
                                                         <select id="unitSemMovimentacao">
-                                                            <option value="minutos" selected>minutos</option>
+                                                            <option value="minutos" selected="">minutos</option>
                                                             <option value="horas">horas</option>
                                                         </select>
                                                     </span>
@@ -1886,7 +1639,7 @@
                                     </td>
                                 </tr>
 
-                                <tr class="classification-main-row">
+                                <tr class="classification-main-row is-disabled">
                                     <td>
                                         <strong>Tempo excedido na posição</strong>
                                         <span class="uses-stage-time-badge">USA TEMPO DEFINIDO NA ETAPA</span>
@@ -1914,7 +1667,7 @@
                                     </td>
                                 </tr>
 
-                                <tr class="classification-main-row">
+                                <tr class="classification-main-row is-disabled">
                                     <td><strong>Impedimento comprovado</strong></td>
                                     <td><span class="classification-rule">Existe ocorrência impeditiva registrada para o objeto.</span></td>
                                     <td class="text-center">
@@ -1925,7 +1678,7 @@
                                     </td>
                                 </tr>
 
-                                <tr class="classification-main-row">
+                                <tr class="classification-main-row is-disabled">
                                     <td><strong>Fluxo concluído</strong></td>
                                     <td><span class="classification-rule">O objeto alcançou uma etapa ou status definido como posição final do fluxo.</span></td>
                                     <td class="text-center">
@@ -1969,7 +1722,7 @@
                                 <th style="width:70px;text-align:center;">Exibir</th>
                             </tr>
                         </thead>
-                        <tbody id="paramTableBody"></tbody>
+                        <tbody id="paramTableBody"><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nome do Projeto</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Código Guarda</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Descrição</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> ID Alternativo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nome Alternativo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Código Guarda Alternativo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Limite de Solicitação Diária</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Limite de Objetos para Indexação por Lotes</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Fuso Horário Padrão (UTC)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Armazém</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Ativo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Principal</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Permitir Adicionar Arquivo(s)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Permitir Imprimir Etiquetas</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Compartilhar Arquivos pela Pesquisa</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Compartilhar Arquivos pela Solicitação</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Substituir Arquivo de Fotolabel</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Campos da Descrição da Solicitação - Documentos</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Campos da Descrição da Solicitação - Caixas</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Formato de Assinatura de O.S</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Prazo Padrão para Devolução de Objeto</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Dia do Mês para Envio de Notificação de Empréstimo Vencido</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Tempo de Inatividade para Bloqueio do Usuário</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Pode Solicitar Caixa</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Pode Solicitar Documento</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Pode Solicitar Caixa Através do Documento</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Enviar Notificação de O.S</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Obrigatoriedade de Destinatário na Abertura da O.S</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Finalizar O.S Digital com 2 Fatores</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Mostrar Dados do Responsável pelo Transporte na O.S</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Disponibilizar Registro Fotográfico no Atendimento da O.S</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Inserir Vinculados na Solicitação</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Controlar o Vencimento de Empréstimo do Objeto</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Permitir Alteração do Prazo pelo Solicitante</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> E-mail Cliente para Comunicações/Notificações</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> E-mail Cliente para Notificações de Lotes</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> E-mail Gestão Documental</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> E-mail Digitalização</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> E-mail para Notificação de Novos Arquivos</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> E-mail (Normal)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> E-mail (Urgente)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Tempo de Aviso Prévio (Normal) - Horas</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Tempo de Aviso Prévio (Urgência) - Horas</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Ver Integrações</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Compartilhar Pacotes de Preservação</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Notificar Vencimento de SLA (Prioridade Normal)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Notificar Vencimento de SLA (Prioridade Urgente)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Definir o Intervalo de Alerta (em Dias)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Destinatários do Alerta de Prazo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Periodicidade do Envio de E-mail de Expurgo (em Dias)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Período a ser Considerado no Relatório de Expurgo Enviado</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> E-mail para Notificação de Relatório de Expurgo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Notificar Prazo de Guarda a Vencer</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Notificar Expurgo por E-mail</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Enviar Relatório de Expurgo Anualmente Automaticamente</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Eliminar Dados após Conclusão da O.S. de Expurgo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Etapa Documental Entrada (para PDF/A)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Etapa Documental Saída (para PDF/A)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Etapa Documental após Conclusão de OS de Recolhimento</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Armazenar Documentos Digitais no Docz File Service</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Permitir Digitalizar</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Realizar Chancela em Documentos Digitalizados</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Realizar Chancela em Documentos Digitalizados em Lote</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Adicionar Marca D'Água em Chancela de Documentos Digitalizados</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Realizar Assinatura com Certificado de Usuário</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Realizar Assinatura com Certificado de Usuário em Lote</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Permitir Upload de um Arquivo por Documento via API</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Substituir Arquivo Existente via API</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Converter documentos para PDF/A</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Alterar Etapa Documental após Conclusão de OS de Recolhimento</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Etapa Documental (Alteração pelo Autor)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Etapa Documental (Inativar)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Habilitar Envio para o SEI</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Visualizar Versões</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Permitir Liberar Objetos para Avaliação sem Informar Tipologia de Arquivos</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Permitir Arquivar/Desarquivar Documentos</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Permitir Relacionamentos</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Restringir Acesso aos Documentos por Departamento do Usuário</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Alteração de Objetos Somente pelo Autor</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Exigir Justificativa ao Alterar um Objeto</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Inativar Arquivos</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Autor</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Local da Digitalização</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Responsável da Digitalização</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Local de Produção</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Habilitar Valores Padrão para Metadados de Arquivo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Identificador SOS</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Localização</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Status</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Serviço</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Identificador Cliente</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Departamento</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Tipo de Objeto</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Lacre 01</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Lacre 02</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nº Última Solicitação</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Usuário</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nº Concorrente</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Classificação</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Páginas</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> IdNuxeo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Volume</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Fase intermediária</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Destinação final</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Fase Corrente</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Observações</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Data de Início</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Etapa Indexação</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Data Catalogação Complementar</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Número RG</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nome do paciente</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nº Prontuário</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Destino</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Número do Dossiê</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Matrícula</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Departamento de Lotação</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Unidade</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Origem</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Anexo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nº Registro</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Responsável</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Contratante</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Data de Produção</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Data de Destinação</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Implantação</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Justificativa de Alteração</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nome do Colaborador</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Tipo Documental</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Data de Nascimento</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nome da mãe</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nome do pai</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> CPF</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Data do óbito</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Sigilo Associado</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Status Gestão Documental</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Nome do Assinante</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Classe</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Subclasse</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Grupo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Subgrupo</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Data do Evento</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Prazo Adicional de Guarda</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Justificativa da Alteração</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Ano Inicial</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Colaborador</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Centro de Custos</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> CPF (2º)</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr><tr><td><label class="checkbox-item"><input type="checkbox" checked=""> Avaliação</label></td><td style="text-align:center;"><label class="switch-sos"><input type="checkbox" checked=""><span class="slider"></span></label></td></tr></tbody>
                     </table>
                 </div>
 
@@ -2299,7 +2052,6 @@
         var pipelineSavedState = JSON.parse(JSON.stringify(pipelineState));
         var stageTimeSavedState = JSON.parse(JSON.stringify(stageTimeLimits));
         var pendingPipelineInsert = null;
-        var draggedPhase = null;
 
         function iniciarPrototipoEsteiras() {
             renderizarEsteira('documentos');
@@ -2401,10 +2153,6 @@
                     var marker = phaseIndex === 0 ?
                         '<span class="phase-marker">INÍCIO</span>' :
                         (phaseIndex === phases.length - 1 ? '<span class="phase-marker end">TÉRMINO</span>' : '');
-                    var phaseActions = '<span class="phase-actions">' +
-                        '<button type="button" data-action="move-phase-left" data-phase="' + phaseIndex + '" title="Mover fase para a esquerda" ' + (phaseIndex === 0 ? 'disabled' : '') + '><i class="fas fa-chevron-left"></i></button>' +
-                        '<button type="button" data-action="move-phase-right" data-phase="' + phaseIndex + '" title="Mover fase para a direita" ' + (phaseIndex === phases.length - 1 ? 'disabled' : '') + '><i class="fas fa-chevron-right"></i></button>' +
-                        '</span>';
                     var chips = phase.map(function(stage) {
                         var timeLimit = obterLimiteEtapa(type, stage);
                         var inputValue = escaparHtml(timeLimit.value || '');
@@ -2412,12 +2160,8 @@
                         var daysSelected = timeLimit.unit === 'days' ? ' selected' : '';
                         return '<div class="phase-chip">' +
                             '<div class="phase-chip-main">' +
-                            '<i class="fas fa-grip-vertical" title="A fase inteira também pode ser arrastada"></i>' +
                             '<span class="phase-chip-copy">' + escaparHtml(stage) + '<small>' + definition.itemType + '</small></span>' +
                             '<span class="chip-actions">' +
-                            '<button type="button" data-action="move-stage-left" data-phase="' + phaseIndex + '" data-stage="' + escaparHtml(stage) + '" title="Mover para a fase anterior" ' + (phaseIndex === 0 ? 'disabled' : '') + '><i class="fas fa-angle-left"></i></button>' +
-                            '<button type="button" data-action="move-stage-right" data-phase="' + phaseIndex + '" data-stage="' + escaparHtml(stage) + '" title="Mover para a próxima fase" ' + (phaseIndex === phases.length - 1 ? 'disabled' : '') + '><i class="fas fa-angle-right"></i></button>' +
-                            (phase.length > 1 ? '<button type="button" data-action="split-stage" data-phase="' + phaseIndex + '" data-stage="' + escaparHtml(stage) + '" title="Separar em uma nova fase"><i class="fas fa-level-down-alt"></i></button>' : '') +
                             '<button type="button" class="remove-stage" data-action="remove-stage" data-stage="' + escaparHtml(stage) + '" title="Remover da esteira"><i class="fas fa-times"></i></button>' +
                             '</span>' +
                             '</div>' +
@@ -2435,8 +2179,8 @@
                             '</div>' +
                             '</div>';
                     }).join('');
-                    return '<article class="phase" draggable="true" data-phase-index="' + phaseIndex + '">' +
-                        '<header class="phase-header"><strong>Fase ' + (phaseIndex + 1) + '</strong><span class="phase-header-meta">' + marker + phaseActions + '</span></header>' +
+                    return '<article class="phase" data-phase-index="' + phaseIndex + '">' +
+                        '<header class="phase-header"><strong>Fase ' + (phaseIndex + 1) + '</strong><span class="phase-header-meta">' + marker + '</span></header>' +
                         '<div class="phase-body">' + chips +
                         (phase.length > 1 ? '<div class="parallel-note"><i class="fas fa-code-branch mr-1"></i>Execução paralela</div>' : '') +
                         '</div>' +
@@ -2455,7 +2199,7 @@
                 '</aside>' +
                 '<div class="pipeline-builder">' +
                 '<div class="builder-toolbar">' +
-                '<div><strong>Organização das fases</strong><div class="builder-help">Arraste ou use as setas para reordenar</div></div>' +
+                '<div><strong>Organização das fases</strong><div class="builder-help">Adicione ou remova etapas da esteira e defina o tempo de cada uma.</div></div>' +
                 '<div class="builder-toolbar-actions">' +
                 (type === 'documentos' ? '<button type="button" class="btn-sos btn-sos-sm btn-sos-outline-secondary" data-action="reset-pipeline"><i class="fas fa-undo mr-1"></i>Restaurar</button>' : '') +
                 '</div>' +
@@ -2505,40 +2249,10 @@
                 });
             });
 
-            panel.querySelectorAll('.phase[draggable="true"]').forEach(function(phase) {
-                phase.addEventListener('dragstart', function(event) {
-                    draggedPhase = { type: type, index: Number(this.getAttribute('data-phase-index')) };
-                    this.classList.add('is-dragging');
-                    event.dataTransfer.effectAllowed = 'move';
-                });
-                phase.addEventListener('dragend', function() {
-                    draggedPhase = null;
-                    panel.querySelectorAll('.phase').forEach(function(item) {
-                        item.classList.remove('is-dragging', 'is-drop-target');
-                    });
-                });
-                phase.addEventListener('dragover', function(event) {
-                    if (draggedPhase && draggedPhase.type === type) {
-                        event.preventDefault();
-                        this.classList.add('is-drop-target');
-                    }
-                });
-                phase.addEventListener('dragleave', function() {
-                    this.classList.remove('is-drop-target');
-                });
-                phase.addEventListener('drop', function(event) {
-                    event.preventDefault();
-                    var targetIndex = Number(this.getAttribute('data-phase-index'));
-                    if (draggedPhase && draggedPhase.type === type && draggedPhase.index !== targetIndex) {
-                        moverFase(type, draggedPhase.index, targetIndex);
-                    }
-                });
-            });
         }
 
         function executarAcaoEsteira(type, button) {
             var action = button.getAttribute('data-action');
-            var phaseIndex = Number(button.getAttribute('data-phase'));
             var stage = button.getAttribute('data-stage');
 
             if (action === 'add-stage') {
@@ -2547,16 +2261,6 @@
                 abrirDialogEsteira(type, null);
             } else if (action === 'remove-stage') {
                 removerEtapa(type, stage);
-            } else if (action === 'move-phase-left') {
-                moverFase(type, phaseIndex, phaseIndex - 1);
-            } else if (action === 'move-phase-right') {
-                moverFase(type, phaseIndex, phaseIndex + 1);
-            } else if (action === 'move-stage-left') {
-                moverEtapaParaFaseVizinha(type, phaseIndex, stage, -1);
-            } else if (action === 'move-stage-right') {
-                moverEtapaParaFaseVizinha(type, phaseIndex, stage, 1);
-            } else if (action === 'split-stage') {
-                separarEtapaEmNovaFase(type, phaseIndex, stage);
             } else if (action === 'reset-pipeline') {
                 restaurarEsteira(type);
             }
@@ -2633,38 +2337,6 @@
                 return phase.filter(function(item) { return item !== stage; });
             }).filter(function(phase) { return phase.length > 0; });
             mostrarToast('"' + stage + '" foi removida da esteira. O domínio do projeto não foi alterado.', 'warning');
-            aposAlterarEsteira(type);
-        }
-
-        function moverFase(type, fromIndex, toIndex) {
-            var phases = pipelineState[type];
-            if (fromIndex < 0 || toIndex < 0 || fromIndex >= phases.length || toIndex >= phases.length) return;
-            var moved = phases.splice(fromIndex, 1)[0];
-            phases.splice(toIndex, 0, moved);
-            mostrarToast('Fase movida para a posição ' + (toIndex + 1) + '.', 'success');
-            aposAlterarEsteira(type);
-        }
-
-        function moverEtapaParaFaseVizinha(type, phaseIndex, stage, direction) {
-            var phases = pipelineState[type];
-            var targetIndex = phaseIndex + direction;
-            if (targetIndex < 0 || targetIndex >= phases.length) return;
-            phases[phaseIndex] = phases[phaseIndex].filter(function(item) { return item !== stage; });
-            if (phases[phaseIndex].length === 0) {
-                phases.splice(phaseIndex, 1);
-                if (direction > 0) targetIndex -= 1;
-            }
-            phases[targetIndex].push(stage);
-            mostrarToast('"' + stage + '" agora ocorre em paralelo na Fase ' + (targetIndex + 1) + '.', 'success');
-            aposAlterarEsteira(type);
-        }
-
-        function separarEtapaEmNovaFase(type, phaseIndex, stage) {
-            var phase = pipelineState[type][phaseIndex];
-            if (!phase || phase.length < 2) return;
-            pipelineState[type][phaseIndex] = phase.filter(function(item) { return item !== stage; });
-            pipelineState[type].splice(phaseIndex + 1, 0, [stage]);
-            mostrarToast('"' + stage + '" foi separada em uma nova fase sequencial.', 'success');
             aposAlterarEsteira(type);
         }
 
@@ -2891,5 +2563,6 @@
         }
     </script>
 
-</body>
-</html>
+
+
+</body></html>
