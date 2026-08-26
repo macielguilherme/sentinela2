@@ -1729,27 +1729,28 @@
     <!-- Adicione este modal de confirmação após o modal de parâmetros (antes do toast) -->
 
 <!-- ===== MODAL DE CONFIRMAÇÃO DOCZ - ESTILO SENTINELA ===== -->
-<div id="popup-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 9999; font-family: 'Segoe UI', Roboto, Arial, sans-serif; font-size: 12px; color: #595959; line-height: 1.5;">
-    
+    <!-- ===== MODAL DE CONFIRMAÇÃO DOCZ - ESTILO SENTINELA ===== -->
+<div id="popup-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: none; align-items: center; justify-content: center; z-index: 9999; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #595959; line-height: 1.5;">
+
     <style>
-        /* Estilos e resets específicos do modal DocZ */
-        #docz-modal-container * {
+        /* ===== STYLES DO POPUP DOCZ ===== */
+        #docz-popup-scope * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        #docz-modal-container .ui-dialog {
+        #docz-popup-scope .ui-dialog {
             background: #585858;
             padding: 5px;
             border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            width: 520px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            width: 580px;
             max-width: 95%;
         }
 
-        #docz-modal-container .ui-dialog-titlebar {
-            background: #f5f6f8;
+        #docz-popup-scope .ui-dialog-titlebar {
+            background: url("https://docz.sosdocs.com.br/Docz/app/images/backgrounds/titleBg.png") repeat-x 0 0;
             height: 36px;
             border-bottom: 1px solid #cdcdcd;
             display: flex;
@@ -1759,64 +1760,115 @@
             border-radius: 3px 3px 0 0;
         }
 
-        #docz-modal-container .ui-dialog-title {
+        #docz-popup-scope .ui-dialog-title {
             font-weight: bold;
             color: #595959;
             font-size: 12px;
         }
 
-        #docz-modal-container .close-x {
+        #docz-popup-scope .close-x {
             text-decoration: none;
             color: #595959;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
-            background: none;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
         }
-        #docz-modal-container .close-x:hover {
-            background: #e2e8f0;
+
+        #docz-popup-scope .close-x:hover {
             color: #000;
         }
 
-        #docz-modal-container .ui-dialog-content {
+        #docz-popup-scope .ui-dialog-content {
             background-color: #fafafa;
             padding: 20px;
             border-radius: 0 0 3px 3px;
         }
 
-        #docz-modal-container .message-box {
-            margin-bottom: 20px;
+        #docz-popup-scope .message-box {
             font-size: 13px;
             color: #595959;
-            padding: 5px;
             text-align: left;
+            margin-bottom: 12px;
         }
 
-        #docz-modal-container .message-box p {
-            margin: 0 0 12px 0;
+        #docz-popup-scope .message-box p {
+            margin: 0 0 10px 0;
             line-height: 1.5;
         }
 
-        #docz-modal-container .message-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        #docz-modal-container .highlight-text {
+        #docz-popup-scope .highlight-text {
             font-weight: bold;
             color: #333;
         }
 
-        #docz-modal-container .button-wrapper {
+        /* Container de Listagem Estilo Legado DocZ */
+        #docz-popup-scope .escopo-container {
+            border: 1px solid #cdcdcd;
+            background: #ffffff;
+            border-radius: 3px;
+            margin: 12px 0 15px 0;
+            overflow: hidden;
+            box-shadow: 0 1px 0 #fff;
+        }
+
+        #docz-popup-scope .escopo-header {
+            padding: 8px 12px;
+            background: url("https://docz.sosdocs.com.br/Docz/app/images/backgrounds/titleBg.png") repeat-x 0 0;
+            border-bottom: 1px solid #cdcdcd;
+            font-size: 11px;
+            color: #595959;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        #docz-popup-scope .escopo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 140px;
+            overflow-y: auto;
+        }
+
+        #docz-popup-scope .escopo-item {
+            padding: 7px 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 11px;
+            color: #595959;
+            display: flex;
+            align-items: center;
+        }
+
+        #docz-popup-scope .escopo-item:last-child {
+            border-bottom: none;
+        }
+
+        #docz-popup-scope .escopo-item:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        #docz-popup-scope .escopo-item:hover {
+            background-color: #f4f4f4;
+        }
+
+        #docz-popup-scope .bullet-icon {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #2e6691;
+            border-radius: 1px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        /* Botões DocZ */
+        #docz-popup-scope .button-wrapper {
             text-align: right;
             border-top: 1px double #ccc;
             padding-top: 15px;
         }
 
-        #docz-modal-container .button,
-        #docz-modal-container .btn-docz {
+        #docz-popup-scope .button,
+        #docz-popup-scope .btn-docz {
             font-size: 11px;
             font-weight: bold;
             text-transform: uppercase;
@@ -1825,61 +1877,93 @@
             border-radius: 2px;
             color: #fff;
             border: none;
-            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background-image: url("https://docz.sosdocs.com.br/Docz/app/images/ui/usualButtons.png");
             background-repeat: repeat-x;
             display: inline-block;
             margin-left: 6px;
         }
 
-        #docz-modal-container .button:hover,
-        #docz-modal-container .btn-docz:hover {
+        #docz-popup-scope .button:hover,
+        #docz-popup-scope .btn-docz:hover {
             opacity: 0.9;
         }
 
-        #docz-modal-container .greenB {
+        #docz-popup-scope .greenB {
             background-position: 0 -425px;
             border: 1px solid #7ca82a;
         }
 
-        #docz-modal-container .redB {
+        #docz-popup-scope .redB {
             background-position: 0 -170px;
             border: 1px solid #9f352b;
         }
 
-        #docz-modal-container .greyB {
+        #docz-popup-scope .greyB {
             background-position: 0 0;
             border: 1px solid #999;
             color: #555;
         }
 
-        #docz-modal-container .dblueB {
+        #docz-popup-scope .dblueB {
             background-position: 0 -680px;
             border: 1px solid #2e6691;
             color: #fff;
         }
     </style>
 
-    <div id="docz-modal-container" style="width: 100%; display: flex; justify-content: center;">
+    <div id="docz-popup-scope" style="width: 100%; display: flex; justify-content: center;">
         <div class="ui-dialog">
             <div class="ui-dialog-titlebar">
                 <span class="ui-dialog-title">Habilitar Monitoramento Sentinela</span>
-                <button type="button" onclick="fecharPopupDocZ()" class="close-x">✖</button>
+                <a href="javascript:void(0)" onclick="fecharPopupDocZ()" class="close-x">✖</a>
             </div>
 
             <div class="ui-dialog-content">
                 <div class="message-box" id="doczModalMessage">
-                    <p>A Etapa Documental <span class="highlight-text" id="doczStageName">“[NOME DA ETAPA]”</span> foi definida no escopo <span class="highlight-text" id="doczProjectName">[NOME DO PROJETO]</span>.</p>
+                    <p>A Etapa Documental <span class="highlight-text" id="doczStageName">“Em auditoria”</span> foi definida nos seguintes escopos:</p>
+                </div>
+
+                <div class="escopo-container">
+                    <div class="escopo-header">Projetos / Escopos Associados</div>
+                    <ul class="escopo-list" id="doczProjectList">
+                        <li class="escopo-item"><span class="bullet-icon"></span>ANM NACIONAL - REGIONAL SP</li>
+                        <li class="escopo-item"><span class="bullet-icon"></span>ANM NACIONAL - REGIONAL SC</li>
+                        <li class="escopo-item"><span class="bullet-icon"></span>ANM NACIONAL - REGIONAL RS</li>
+                        <li class="escopo-item"><span class="bullet-icon"></span>ANM NACIONAL - REGIONAL MG</li>
+                        <li class="escopo-item"><span class="bullet-icon"></span>ANM NACIONAL - REGIONAL RJ</li>
+                    </ul>
+                </div>
+
+                <div class="message-box">
                     <p>Ao confirmar, ela será habilitada para monitoramento no Sentinela e apresentada no Dashboard conforme a ordem definida para o fluxo.</p>
                 </div>
 
                 <div class="button-wrapper">
-                    <button type="button" class="button redB" onclick="fecharPopupDocZ()">CANCELAR</button>
-                    <button type="button" class="button greenB" id="doczConfirmBtn" onclick="confirmarAdicaoEtapa()">CONFIRMAR</button>
+                    <button type="button" class="button redB" onclick="cancelarOperacaoDocZ()">CANCELAR</button>
+                    <button type="button" class="button greenB" onclick="confirmarOperacaoDocZ()">CONFIRMAR</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmarOperacaoDocZ() {
+            alert("Etapa documental habilitada para monitoramento no Sentinela com sucesso!");
+            fecharPopupDocZ();
+        }
+
+        function cancelarOperacaoDocZ() {
+            fecharPopupDocZ();
+        }
+
+        function fecharPopupDocZ() {
+            var backdrop = document.getElementById("popup-backdrop");
+            if (backdrop) {
+                backdrop.style.display = "none";
+            }
+        }
+    </script>
 </div>
 
     <!-- ===== TOAST ===== -->
@@ -2528,55 +2612,32 @@
 var pendingDocZInsert = null;
 
 // ===== FUNÇÕES DO MODAL DOCZ =====
-function abrirPopupDocZ(stageName, projectName) {
+function abrirPopupDocZ(stageName) {
     var backdrop = document.getElementById('popup-backdrop');
     if (!backdrop) return;
     
-    document.getElementById('doczStageName').textContent = stageName;
-    document.getElementById('doczProjectName').textContent = projectName || 'projeto atual';
-    backdrop.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-
-function fecharPopupDocZ() {
-    var backdrop = document.getElementById('popup-backdrop');
-    if (backdrop) {
-        backdrop.style.display = 'none';
-        document.body.style.overflow = '';
-    }
-    pendingDocZInsert = null;
-}
-
-function confirmarAdicaoEtapa() {
-    if (!pendingDocZInsert) return;
-    
-    var type = pendingDocZInsert.type;
-    var stage = pendingDocZInsert.stage;
-    
-    obterLimiteEtapa(type, stage);
-    pipelineState[type].push([stage]);
-    
-    mostrarToast('"' + stage + '" adicionada como nova fase no final da esteira.', 'success');
-    
-    fecharPopupDocZ();
-    aposAlterarEsteira(type);
-    
-    window.setTimeout(function() {
-        var newField = document.querySelector('#pipeline-' + type + ' .stage-time-value[data-stage="' + stage.replace(/"/g, '\\"') + '"]');
-        if (newField && !newField.value) newField.focus();
-    }, 0);
-}
-
-// ===== VARIÁVEIS PARA O MODAL DOCZ =====
-var pendingDocZInsert = null;
-
-// ===== FUNÇÕES DO MODAL DOCZ =====
-function abrirPopupDocZ(stageName, projectName) {
-    var backdrop = document.getElementById('popup-backdrop');
-    if (!backdrop) return;
-    
+    // Atualiza o nome da etapa
     document.getElementById('doczStageName').textContent = '“' + stageName + '”';
-    document.getElementById('doczProjectName').textContent = projectName || 'projeto atual';
+    
+    // Obtém os projetos selecionados
+    var projectTags = document.querySelectorAll('#projectTagList .project-tag');
+    var projectList = document.getElementById('doczProjectList');
+    projectList.innerHTML = '';
+    
+    if (projectTags.length === 0) {
+        projectList.innerHTML = '<li class="escopo-item"><span class="bullet-icon"></span>Nenhum projeto selecionado</li>';
+    } else {
+        projectTags.forEach(function(tag) {
+            var text = tag.textContent.replace('×', '').trim();
+            if (text) {
+                var li = document.createElement('li');
+                li.className = 'escopo-item';
+                li.innerHTML = '<span class="bullet-icon"></span>' + text;
+                projectList.appendChild(li);
+            }
+        });
+    }
+    
     backdrop.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
@@ -2590,7 +2651,11 @@ function fecharPopupDocZ() {
     pendingDocZInsert = null;
 }
 
-function confirmarAdicaoEtapa() {
+function cancelarOperacaoDocZ() {
+    fecharPopupDocZ();
+}
+
+function confirmarOperacaoDocZ() {
     if (!pendingDocZInsert) {
         fecharPopupDocZ();
         return;
@@ -2637,25 +2702,11 @@ function abrirDialogEsteira(type, stage) {
 
     var stageToAdd = stage || available[0];
     
-    // Obter nome do projeto da seleção
-    var projectName = 'projeto atual';
-    var projectTags = document.querySelectorAll('#projectTagList .project-tag');
-    if (projectTags.length > 0) {
-        var projectTexts = [];
-        projectTags.forEach(function(tag) {
-            var text = tag.textContent.replace('×', '').trim();
-            if (text) projectTexts.push(text);
-        });
-        if (projectTexts.length > 0) {
-            projectName = projectTexts.join(', ');
-        }
-    }
-    
     // Salvar o stage para confirmação
     pendingDocZInsert = { type: type, stage: stageToAdd };
     
     // Abrir o modal DocZ
-    abrirPopupDocZ(stageToAdd, projectName);
+    abrirPopupDocZ(stageToAdd);
 }
 
 // ===== REMOVER REFERÊNCIAS AO DIÁLOGO ANTIGO =====
@@ -2667,7 +2718,6 @@ function abrirDialogEsteira(type, stage) {
 // document.querySelectorAll('input[name="insertMode"]')...
 // document.addEventListener('keydown', ...)
 
-// Substitua por apenas:
 function iniciarPrototipoEsteiras() {
     renderizarEsteira('documentos');
     renderizarEsteira('caixas');
