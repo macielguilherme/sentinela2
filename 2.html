@@ -1726,38 +1726,167 @@
         </div>
     </div>
 
+    <!-- Adicione este modal de confirmação após o modal de parâmetros (antes do toast) -->
+
+<!-- ===== MODAL DE CONFIRMAÇÃO DOCZ - ESTILO SENTINELA ===== -->
+<div id="popup-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 9999; font-family: 'Segoe UI', Roboto, Arial, sans-serif; font-size: 12px; color: #595959; line-height: 1.5;">
+    
+    <style>
+        /* Estilos e resets específicos do modal DocZ */
+        #docz-modal-container * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        #docz-modal-container .ui-dialog {
+            background: #585858;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 520px;
+            max-width: 95%;
+        }
+
+        #docz-modal-container .ui-dialog-titlebar {
+            background: #f5f6f8;
+            height: 36px;
+            border-bottom: 1px solid #cdcdcd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        #docz-modal-container .ui-dialog-title {
+            font-weight: bold;
+            color: #595959;
+            font-size: 12px;
+        }
+
+        #docz-modal-container .close-x {
+            text-decoration: none;
+            color: #595959;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        #docz-modal-container .close-x:hover {
+            background: #e2e8f0;
+            color: #000;
+        }
+
+        #docz-modal-container .ui-dialog-content {
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 0 0 3px 3px;
+        }
+
+        #docz-modal-container .message-box {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #595959;
+            padding: 5px;
+            text-align: left;
+        }
+
+        #docz-modal-container .message-box p {
+            margin: 0 0 12px 0;
+            line-height: 1.5;
+        }
+
+        #docz-modal-container .message-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        #docz-modal-container .highlight-text {
+            font-weight: bold;
+            color: #333;
+        }
+
+        #docz-modal-container .button-wrapper {
+            text-align: right;
+            border-top: 1px double #ccc;
+            padding-top: 15px;
+        }
+
+        #docz-modal-container .button,
+        #docz-modal-container .btn-docz {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 8px 20px;
+            border-radius: 2px;
+            color: #fff;
+            border: none;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background-image: url("https://docz.sosdocs.com.br/Docz/app/images/ui/usualButtons.png");
+            background-repeat: repeat-x;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        #docz-modal-container .button:hover,
+        #docz-modal-container .btn-docz:hover {
+            opacity: 0.9;
+        }
+
+        #docz-modal-container .greenB {
+            background-position: 0 -425px;
+            border: 1px solid #7ca82a;
+        }
+
+        #docz-modal-container .redB {
+            background-position: 0 -170px;
+            border: 1px solid #9f352b;
+        }
+
+        #docz-modal-container .greyB {
+            background-position: 0 0;
+            border: 1px solid #999;
+            color: #555;
+        }
+
+        #docz-modal-container .dblueB {
+            background-position: 0 -680px;
+            border: 1px solid #2e6691;
+            color: #fff;
+        }
+    </style>
+
+    <div id="docz-modal-container" style="width: 100%; display: flex; justify-content: center;">
+        <div class="ui-dialog">
+            <div class="ui-dialog-titlebar">
+                <span class="ui-dialog-title">Habilitar Monitoramento Sentinela</span>
+                <button type="button" onclick="fecharPopupDocZ()" class="close-x">✖</button>
+            </div>
+
+            <div class="ui-dialog-content">
+                <div class="message-box" id="doczModalMessage">
+                    <p>A Etapa Documental <span class="highlight-text" id="doczStageName">“[NOME DA ETAPA]”</span> foi definida no escopo <span class="highlight-text" id="doczProjectName">[NOME DO PROJETO]</span>.</p>
+                    <p>Ao confirmar, ela será habilitada para monitoramento no Sentinela e apresentada no Dashboard conforme a ordem definida para o fluxo.</p>
+                </div>
+
+                <div class="button-wrapper">
+                    <button type="button" class="button redB" onclick="fecharPopupDocZ()">CANCELAR</button>
+                    <button type="button" class="button greenB" id="doczConfirmBtn" onclick="confirmarAdicaoEtapa()">CONFIRMAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- ===== TOAST ===== -->
     <div class="toast-stack" id="toastStack" aria-live="polite"></div>
 
     <!-- ===== DIALOG ESTEIRA ===== -->
-    <div class="pipeline-dialog-backdrop" id="pipelineDialogBackdrop" role="dialog" aria-modal="true" aria-labelledby="pipelineDialogTitle">
-        <div class="pipeline-dialog">
-            <div class="pipeline-dialog-header">
-                <strong id="pipelineDialogTitle">Adicionar etapa à esteira</strong>
-                <button type="button" class="dialog-close" id="pipelineDialogClose" aria-label="Fechar"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="pipeline-dialog-body">
-                <div class="dialog-stage-name" id="dialogStageName"><label for="dialogStagePicker" class="small mb-1">Etapa disponível</label><select class="field field-sm" id="dialogStagePicker"><option value="Em movimentação">Em movimentação</option></select></div>
-                <p class="small text-muted">Escolha como esta etapa deve entrar no fluxo monitorado:</p>
-                <label class="insert-option">
-                    <input type="radio" name="insertMode" value="new" checked="">
-                    <span><strong>Criar uma nova fase sequencial</strong><small>A etapa será incluída no final da esteira e poderá ser reordenada depois.</small></span>
-                </label>
-                <label class="insert-option">
-                    <input type="radio" name="insertMode" value="parallel">
-                    <span style="width:100%">
-                        <strong>Adicionar em paralelo a uma fase existente</strong>
-                        <small>A etapa ficará no mesmo grupo, sem precedência em relação às demais.</small>
-                        <select class="dialog-phase-select" id="dialogPhaseSelect" disabled=""><option value="0">Fase 1 — Recebida</option><option value="1">Fase 2 — Em preparação</option><option value="2">Fase 3 — Em processamento</option><option value="3">Fase 4 — Concluída</option><option value="4">Fase 5 — Em auditoria</option></select>
-                    </span>
-                </label>
-            </div>
-            <div class="pipeline-dialog-footer">
-                <button type="button" class="btn-sos btn-sos-sm btn-sos-outline-secondary" id="pipelineDialogCancel">Cancelar</button>
-                <button type="button" class="btn-sos btn-sos-sm btn-sos-success" id="pipelineDialogConfirm"><i class="fas fa-plus mr-1"></i> Adicionar à esteira</button>
-            </div>
-        </div>
-    </div>
+    
 
     <script>
         // ================================================================
@@ -2287,10 +2416,7 @@
             document.getElementById('pipelineDialogConfirm').focus();
         }
 
-        function fecharDialogEsteira() {
-            document.getElementById('pipelineDialogBackdrop').classList.remove('is-open');
-            pendingPipelineInsert = null;
-        }
+        
 
         function confirmarInsercaoEsteira() {
             if (!pendingPipelineInsert) return;
@@ -2397,6 +2523,184 @@
             campo.removeAttribute('aria-invalid');
             if (mensagem) mensagem.classList.remove('is-visible');
         }
+
+        // ===== VARIÁVEIS PARA O MODAL DOCZ =====
+var pendingDocZInsert = null;
+
+// ===== FUNÇÕES DO MODAL DOCZ =====
+function abrirPopupDocZ(stageName, projectName) {
+    var backdrop = document.getElementById('popup-backdrop');
+    if (!backdrop) return;
+    
+    document.getElementById('doczStageName').textContent = stageName;
+    document.getElementById('doczProjectName').textContent = projectName || 'projeto atual';
+    backdrop.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function fecharPopupDocZ() {
+    var backdrop = document.getElementById('popup-backdrop');
+    if (backdrop) {
+        backdrop.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    pendingDocZInsert = null;
+}
+
+function confirmarAdicaoEtapa() {
+    if (!pendingDocZInsert) return;
+    
+    var type = pendingDocZInsert.type;
+    var stage = pendingDocZInsert.stage;
+    
+    obterLimiteEtapa(type, stage);
+    pipelineState[type].push([stage]);
+    
+    mostrarToast('"' + stage + '" adicionada como nova fase no final da esteira.', 'success');
+    
+    fecharPopupDocZ();
+    aposAlterarEsteira(type);
+    
+    window.setTimeout(function() {
+        var newField = document.querySelector('#pipeline-' + type + ' .stage-time-value[data-stage="' + stage.replace(/"/g, '\\"') + '"]');
+        if (newField && !newField.value) newField.focus();
+    }, 0);
+}
+
+// ===== VARIÁVEIS PARA O MODAL DOCZ =====
+var pendingDocZInsert = null;
+
+// ===== FUNÇÕES DO MODAL DOCZ =====
+function abrirPopupDocZ(stageName, projectName) {
+    var backdrop = document.getElementById('popup-backdrop');
+    if (!backdrop) return;
+    
+    document.getElementById('doczStageName').textContent = '“' + stageName + '”';
+    document.getElementById('doczProjectName').textContent = projectName || 'projeto atual';
+    backdrop.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function fecharPopupDocZ() {
+    var backdrop = document.getElementById('popup-backdrop');
+    if (backdrop) {
+        backdrop.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    pendingDocZInsert = null;
+}
+
+function confirmarAdicaoEtapa() {
+    if (!pendingDocZInsert) {
+        fecharPopupDocZ();
+        return;
+    }
+    
+    var type = pendingDocZInsert.type;
+    var stage = pendingDocZInsert.stage;
+    
+    if (!stage) {
+        fecharPopupDocZ();
+        return;
+    }
+    
+    // Verificar se já está na esteira
+    if (etapaEstaNaEsteira(type, stage)) {
+        mostrarToast('"' + stage + '" já está sendo monitorada.', 'warning');
+        fecharPopupDocZ();
+        return;
+    }
+    
+    obterLimiteEtapa(type, stage);
+    pipelineState[type].push([stage]);
+    
+    mostrarToast('"' + stage + '" habilitada para monitoramento no Sentinela.', 'success');
+    
+    fecharPopupDocZ();
+    aposAlterarEsteira(type);
+    
+    window.setTimeout(function() {
+        var newField = document.querySelector('#pipeline-' + type + ' .stage-time-value[data-stage="' + stage.replace(/"/g, '\\"') + '"]');
+        if (newField && !newField.value) newField.focus();
+    }, 0);
+}
+
+// ===== ABRIR DIÁLOGO DE ADIÇÃO (SUBSTITUI O ANTIGO) =====
+function abrirDialogEsteira(type, stage) {
+    var available = pipelineDefinitions[type].stages.filter(function(item) {
+        return !etapaEstaNaEsteira(type, item);
+    });
+    if (available.length === 0) {
+        mostrarToast('Todas as etapas disponíveis já fazem parte desta esteira.', 'warning');
+        return;
+    }
+
+    var stageToAdd = stage || available[0];
+    
+    // Obter nome do projeto da seleção
+    var projectName = 'projeto atual';
+    var projectTags = document.querySelectorAll('#projectTagList .project-tag');
+    if (projectTags.length > 0) {
+        var projectTexts = [];
+        projectTags.forEach(function(tag) {
+            var text = tag.textContent.replace('×', '').trim();
+            if (text) projectTexts.push(text);
+        });
+        if (projectTexts.length > 0) {
+            projectName = projectTexts.join(', ');
+        }
+    }
+    
+    // Salvar o stage para confirmação
+    pendingDocZInsert = { type: type, stage: stageToAdd };
+    
+    // Abrir o modal DocZ
+    abrirPopupDocZ(stageToAdd, projectName);
+}
+
+// ===== REMOVER REFERÊNCIAS AO DIÁLOGO ANTIGO =====
+// No iniciarPrototipoEsteiras, remova estas linhas:
+// document.getElementById('pipelineDialogClose').addEventListener('click', fecharDialogEsteira);
+// document.getElementById('pipelineDialogCancel').addEventListener('click', fecharDialogEsteira);
+// document.getElementById('pipelineDialogConfirm').addEventListener('click', confirmarInsercaoEsteira);
+// document.getElementById('pipelineDialogBackdrop').addEventListener('click', ...);
+// document.querySelectorAll('input[name="insertMode"]')...
+// document.addEventListener('keydown', ...)
+
+// Substitua por apenas:
+function iniciarPrototipoEsteiras() {
+    renderizarEsteira('documentos');
+    renderizarEsteira('caixas');
+    atualizarContadoresEsteira();
+    atualizarStatusEsteira('documentos');
+
+    // Fechar modal DocZ com ESC
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') fecharPopupDocZ();
+    });
+
+    // Tabs
+    document.querySelectorAll('.pipeline-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.pipeline-tab').forEach(function(item) {
+                var active = item === tab;
+                item.classList.toggle('active', active);
+                item.setAttribute('aria-selected', active ? 'true' : 'false');
+            });
+            document.querySelectorAll('.pipeline-panel').forEach(function(panel) {
+                panel.classList.toggle('active', panel.id === 'pipeline-' + tab.getAttribute('data-pipeline'));
+            });
+            atualizarStatusEsteira(tab.getAttribute('data-pipeline'));
+        });
+    });
+
+    window.addEventListener('beforeunload', function(event) {
+        if (document.getElementById('pipelineUnsaved').classList.contains('show')) {
+            event.preventDefault();
+            event.returnValue = '';
+        }
+    });
+}
 
         function validarTemposEtapas() {
             var primeiroInvalido = null;
